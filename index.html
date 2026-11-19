@@ -1,0 +1,1544 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>William Stidwell GIS Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Geography graduate working across GIS, remote sensing, land surveying and construction.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@1,6..72,400..500&display=swap">
+<style>
+/* Layout: the page as a map sheet. A contour-map hero with a title cartouche, projects as map insets, skills as a legend. */
+:root{
+  --paper:#f3f5f1;
+  --map:#e8ede5;
+  --ink:#16212a;
+  --ink-2:#4b5862;
+  --rule:#c7cfc6;
+  --water:#1f5fae;
+  --water-tint:#cddff1;
+  --contour:#a0643a;
+  --veg:#4d7c3b;
+  --veg-tint:#cfe0c2;
+  --alert:#c13a2b;
+  --f-sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-place:"Newsreader",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --wrap:1232px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f151a; --map:#131b21; --ink:#e2e8eb; --ink-2:#97a5ae; --rule:#2a3741;
+    --water:#72aaea; --water-tint:#1a3149; --contour:#c99567; --veg:#87b46f; --veg-tint:#20352a; --alert:#ff7c6a;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f151a; --map:#131b21; --ink:#e2e8eb; --ink-2:#97a5ae; --rule:#2a3741;
+  --water:#72aaea; --water-tint:#1a3149; --contour:#c99567; --veg:#87b46f; --veg-tint:#20352a; --alert:#ff7c6a;
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:84px}
+@media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--water);outline-offset:3px}
+
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* Draft strip */
+.draft{background:var(--water-tint);color:var(--ink);font:400 12px/1.4 var(--f-mono)}
+.draft .wrap{padding-block:8px}
+
+/* Header */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px 20px;flex-wrap:wrap;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;font-size:14px;font-weight:700;font-stretch:115%;letter-spacing:.04em;text-transform:uppercase}
+.brand-sub{font-weight:400;color:var(--ink-2)}
+.brand svg{width:20px;height:29px;flex:none}
+.br{fill:none;stroke:var(--ink);stroke-width:1.1;stroke-linejoin:round}
+.brf{fill:var(--water)}
+.bar ul{display:flex;gap:clamp(14px,3vw,30px);list-style:none;margin:0;padding:0}
+.bar nav a{color:var(--ink-2);text-decoration:none;font-size:14px;font-weight:500}
+.bar nav a{display:inline-flex;flex-direction:column}
+.bar nav a::after{content:attr(data-label);height:0;overflow:hidden;visibility:hidden;font-weight:700}
+.bar nav a:hover{font-weight:700}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;background:var(--map);border-bottom:1px solid var(--rule)}
+#terrain{position:absolute;inset:0;width:100%;height:100%;display:block}
+.xh{position:absolute;pointer-events:none;background:var(--ink);opacity:.35}
+.xh-v{top:0;bottom:0;width:1px}
+.xh-h{left:0;right:0;height:1px}
+.xh-dot{position:absolute;width:11px;height:11px;margin:-5px 0 0 -5px;border:1.5px solid var(--ink);border-radius:50%;pointer-events:none}
+.north{position:absolute;top:30px;right:calc(20px + env(safe-area-inset-right,0px));width:30px;height:52px;pointer-events:none}
+.na-t{font:700 12px var(--f-sans);fill:var(--ink)}
+.na-l{fill:var(--ink)}
+.na-r{fill:var(--paper);stroke:var(--ink);stroke-width:1.2;stroke-linejoin:round}
+.hero-in{position:relative;padding-block:clamp(84px,11vw,140px) 128px;pointer-events:none}
+.cartouche{pointer-events:auto;max-width:35rem;margin-inline:5px;background:var(--paper);border:1px solid var(--ink);outline:1px solid var(--ink);outline-offset:4px;padding:clamp(22px,3.2vw,36px)}
+.role{font:500 12.5px/1.3 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin:0 0 14px}
+h1{font-size:clamp(2.3rem,6.4vw,4.5rem);font-weight:800;font-stretch:125%;line-height:.94;letter-spacing:-.005em;text-transform:uppercase;margin:0 0 18px;text-wrap:balance}
+.lede{font-size:clamp(1rem,1.6vw,1.13rem);margin:0 0 24px;max-width:46ch}
+.cta{display:flex;flex-wrap:wrap;gap:10px}
+.avail{display:flex;align-items:center;gap:9px;margin:22px 0 0;padding-top:14px;border-top:1px solid var(--rule);font:400 12px/1.4 var(--f-mono);color:var(--ink-2)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--veg);flex:none}
+.scale{position:absolute;right:calc(30px + env(safe-area-inset-right,0px));bottom:52px;pointer-events:none;font:500 10.5px/1 var(--f-mono);color:var(--ink);font-variant-numeric:tabular-nums}
+.scale-bar{display:flex;box-sizing:content-box;width:200px;height:6px;border:1px solid var(--ink)}
+.scale-bar i{flex:1;background:var(--paper)}
+.scale-bar i:nth-child(odd){background:var(--ink)}
+.scale-lab{position:relative;width:200px;height:12px;margin-top:5px}
+.scale-lab span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
+.status{position:absolute;left:0;right:0;bottom:0;background:var(--paper);border-top:1px solid var(--rule);font:400 12px/1.35 var(--f-mono);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.status .wrap{display:flex;justify-content:space-between;gap:16px;padding-block:9px}
+#readout{color:var(--ink);min-width:0}
+@media (max-width:720px){.status-r{display:none}}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;font:600 15px/1 var(--f-sans);text-decoration:none;border:1px solid var(--ink);border-radius:2px;cursor:pointer;background:transparent;color:var(--ink)}
+.btn-primary{background:var(--ink);color:var(--paper)}
+.btn-primary:hover{font-weight:800}
+.btn-ghost:hover{font-weight:800}
+
+/* Sections */
+.section{border-top:1px solid var(--rule)}
+.section:first-of-type{border-top:0}
+.section > .wrap{padding-block:clamp(56px,8vw,104px)}
+.sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px 32px;margin-bottom:clamp(28px,4vw,44px)}
+.eyebrow{font:500 12px/1.3 var(--f-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin:0 0 10px}
+h2{font-size:clamp(1.85rem,3.6vw,2.7rem);font-weight:750;font-stretch:112%;line-height:1.05;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.sec-note{margin:0;max-width:42ch;color:var(--ink-2)}
+
+/* Filters */
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;font:500 13.5px/1 var(--f-sans);border:1px solid var(--rule);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip .n{font:500 11px/1 var(--f-mono);color:var(--ink-2)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.chip[aria-pressed="true"] .n{color:var(--paper);opacity:.75}
+
+/* Project cards */
+.grid{display:flex;gap:32px;align-items:flex-start}
+.grid-col{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:32px}
+.card{position:relative;display:flex;flex-direction:column;gap:12px;min-width:0;container-type:inline-size;background:var(--panel);border:1px solid var(--ink);padding:clamp(14px,2vw,20px)}
+.thumb{position:relative;aspect-ratio:4/3;width:100%;max-width:100%;border:1px solid var(--rule);background:var(--map);overflow:hidden}
+.thumb img{display:block;width:100%;height:100%;object-fit:cover;background:#fff}
+.thumb-sheet{display:none;flex-direction:column;justify-content:center;gap:6px;min-height:calc(100cqw * var(--th, .75));pointer-events:none}
+@keyframes sheetIn{from{opacity:0}to{opacity:1}}
+.thumb-sheet .sr{display:flex;gap:6px}
+.thumb-sheet img{display:block;width:0;min-width:0;height:auto;background:#fff}
+.thumb .inset-label{z-index:2;transition:opacity .2s}
+@media (hover:hover){.card:hover .thumb-sheet,.card:focus-within .thumb-sheet{display:flex;animation:sheetIn .2s ease}.card:hover .thumb,.card:focus-within .thumb{display:none}}
+@media (prefers-reduced-motion: reduce){.thumb-sheet{animation:none!important}}
+@media (prefers-reduced-motion: reduce){.thumb-sheet,.thumb .inset-label{transition:none}}
+.thumb .thumb-bg{position:absolute;inset:0;object-fit:cover;filter:blur(18px) brightness(.9);transform:scale(1.25)}
+.inset-label{position:absolute;left:8px;bottom:8px;background:var(--paper);border:1px solid var(--rule);padding:5px 7px;font:500 11px/1 var(--f-mono);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.card-top{display:flex;justify-content:space-between;gap:12px;font:500 12px/1.2 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);margin-top:4px}
+.card h3{margin:0;font-size:1.3rem;font-weight:700;font-stretch:106%;line-height:1.2;text-wrap:balance}
+.card-link{all:unset;cursor:pointer}
+.card-link::after{content:"";position:absolute;inset:0}
+.card:hover .thumb{border-color:var(--ink)}
+.card:hover h3,.card:focus-within h3{font-weight:800}
+.card:has(.card-link:focus-visible) .thumb{outline:2px solid var(--water);outline-offset:3px}
+.place{margin:-6px 0 0;font-family:var(--f-place);font-style:italic;font-size:1.06rem;color:var(--ink-2)}
+.summary{margin:0;max-width:62ch}
+.tools{margin:0;font:400 12px/1.55 var(--f-mono);color:var(--ink-2)}
+.more{font-size:14px;font-weight:600;color:var(--ink-2)}
+.card:hover .more,.card:focus-within .more{font-weight:800}
+
+/* Legend */
+.legend{position:relative;margin-inline:5px;background:var(--paper);border:1px solid var(--ink);outline:1px solid var(--ink);outline-offset:4px;padding:clamp(22px,3.5vw,40px)}
+.legend-h{margin:0 0 clamp(16px,2.5vw,24px)}
+.legend-title{position:absolute;top:-.75em;left:18px;background:var(--paper);padding:0 8px;font:500 12px/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase}
+.legend-grid{display:grid;list-style:none;margin:0;padding:0}
+.legend-grid li{display:grid;grid-template-columns:minmax(0,14rem) minmax(0,1fr);gap:6px 24px;align-items:start;padding-block:18px;border-bottom:1px solid var(--rule)}
+.legend-grid li:first-child{padding-top:4px}
+.sym{width:46px;height:30px;margin-top:-3px}
+.legend h3{margin:0;font-size:1.06rem;font-weight:700;font-stretch:106%}
+.legend p{margin:0;color:var(--ink-2);font-size:15px}
+.legend-foot{margin:18px 0 0;font:400 12px/1.4 var(--f-mono);color:var(--ink-2)}
+.s-gl{fill:none;stroke:var(--ink-2);stroke-width:.8}
+.s-gcp{fill:none;stroke:var(--alert);stroke-width:1.6;stroke-linecap:round}
+@media (max-width:640px){.legend-grid li{grid-template-columns:minmax(0,1fr);gap:4px}}
+.s-ink{fill:var(--ink)}
+.s-ring{fill:none;stroke:var(--ink);stroke-width:1.2}
+.s-poly{fill:var(--veg-tint);stroke:var(--veg);stroke-width:1.5}
+.s-line{fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round}
+.s-dash{fill:none;stroke:var(--alert);stroke-width:2.2;stroke-dasharray:5 3.5;stroke-linecap:round}
+.s-halo{stroke:var(--paper);stroke-width:1.5}
+
+/* About */
+.gridded{background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px;background-position:50% 0}
+.about{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(36px,6vw,88px)}
+.bio h2{margin-bottom:22px}
+.bio p:not(.eyebrow){max-width:60ch;margin:0 0 1em;font-size:1.06rem}
+.glance-box{align-self:start;background:var(--panel);border:1px solid var(--ink);padding:clamp(20px,3vw,32px)}
+.glance{margin:6px 0 0;display:grid}
+.glance div{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:4px 16px;padding-block:14px;border-top:1px solid var(--rule)}
+.glance div:first-child{border-top:0;padding-top:0}
+.glance dt{font:500 11.5px/1.6 var(--f-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+.glance dd{margin:0;font-size:15.5px}
+@media (max-width:780px){.about{grid-template-columns:1fr}}
+
+/* Study sites map */
+.sites{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center;margin-bottom:clamp(48px,7vw,80px)}
+.sites-map{position:relative;width:100%;border:1px solid var(--ink);background:var(--water-tint)}
+.sites-map svg{display:block;width:100%;height:auto}
+.m-grat{fill:none;stroke:var(--ink-2);stroke-width:.5;opacity:.3}
+.m-other{fill:var(--map);stroke:var(--ink-2);stroke-width:.6;stroke-linejoin:round}
+.m-land{fill:var(--paper)}
+.m-eng{fill:var(--veg-tint);opacity:.8;transition:opacity .25s,fill .25s}
+.m-eng.is-hl{fill:var(--veg);opacity:.45}
+.m-land-line{fill:none;stroke:var(--ink);stroke-width:.8;stroke-linejoin:round}
+.m-border{fill:none;stroke:var(--ink-2);stroke-width:.8;stroke-dasharray:3 2.5}
+.m-leader{fill:none;stroke:var(--ink);stroke-width:.8}
+.m-pt{fill:var(--ink)}
+.m-lab{font:500 8.5px var(--f-mono);fill:var(--ink-2)}
+.m-lab-ink{fill:var(--ink)}
+.sb-a{fill:var(--ink)}
+.sb-b{fill:var(--paper);stroke:var(--ink);stroke-width:.6}
+.m-inset{fill:var(--paper);stroke:var(--ink);stroke-width:.8}
+.g-a{fill:var(--water-tint)}
+.g-b{fill:var(--map)}
+.g-line{fill:none;stroke:var(--ink-2);stroke-width:.5}
+.g-rim{fill:none;stroke:var(--ink);stroke-width:.9}
+.site-mk{position:absolute;transform:translate(-50%,-50%);width:26px;height:26px;padding:0;border-radius:50%;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);font:600 12px/1 var(--f-mono);display:grid;place-items:center;cursor:pointer;transition:background .15s,color .15s}
+.site-mk::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1.5px solid var(--water);opacity:0;transform:scale(.6);transition:opacity .2s,transform .2s}
+.site-mk.is-hl{background:var(--ink);color:var(--paper)}
+.site-mk.is-hl::after{opacity:1;transform:scale(1)}
+.sites-h{margin:0;font-size:clamp(1.3rem,2.4vw,1.7rem);font-weight:750;font-stretch:110%;line-height:1.15}
+.sites-note{margin:10px 0 0;color:var(--ink-2)}
+.site-key{list-style:none;margin:22px 0 0;padding:0;border-top:1px solid var(--rule)}
+.site-key li{border-bottom:1px solid var(--rule)}
+.site-key button{display:grid;grid-template-columns:30px minmax(0,1fr);gap:2px 14px;align-items:center;width:100%;padding:14px 4px;border:0;background:none;color:var(--ink);text-align:left;font:inherit;cursor:pointer}
+.site-key .mk{grid-row:span 2;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;font:600 12px/1 var(--f-mono);transition:background .15s,color .15s}
+.site-key strong{font-weight:700;font-stretch:104%;line-height:1.3}
+.site-key .pl{font-family:var(--f-place);font-style:italic;color:var(--ink-2)}
+.site-key button.is-hl strong{font-weight:800}
+.site-key button.is-hl .mk{background:var(--ink);color:var(--paper)}
+.grid-bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-bottom:28px}
+#work .sites{margin-bottom:0}
+.work-cards{border-top:1px solid var(--rule)}
+.work-cards > .wrap{padding-block:clamp(40px,6vw,72px)}
+@media (max-width:760px){.sites{grid-template-columns:1fr}.sites-map{max-width:440px}}
+@media (prefers-reduced-motion: reduce){.site-mk,.site-mk::after,.m-eng{transition:none}}
+
+/* Layer legend in case studies */
+.layers{display:grid;grid-template-columns:minmax(0,1.2fr) 44px minmax(0,1fr);align-items:center;gap:12px;padding:clamp(16px,3vw,24px);border:1px solid var(--ink);background:var(--panel)}
+.layers .eyebrow{margin:0 0 12px}
+.lstack,.lout{list-style:none;margin:0;padding:0}
+.lstack li,.lout li{position:relative;display:grid;grid-template-columns:110px minmax(0,1fr);align-items:center;gap:14px}
+.lstack li + li{margin-top:-8px}
+.lout li + li{margin-top:2px}
+.lyr{display:block;width:110px;height:44px;overflow:visible}
+.lyr .edge{fill:none;stroke:var(--ink);stroke-width:1.2;stroke-linejoin:round}
+.lname{display:block;font-weight:700;font-size:15px;line-height:1.2}
+.lnote{display:block;font:400 11.5px/1.35 var(--f-mono);color:var(--ink-2)}
+.lop{display:block;width:110px;text-align:center;font:600 16px/1 var(--f-mono);color:var(--ink-2);padding-block:2px}
+.lflow{display:grid;place-items:center}
+.lflow svg{width:40px;height:24px;fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:640px){.layers{grid-template-columns:minmax(0,1fr)}.lflow svg{transform:rotate(90deg)}}
+
+/* Side-by-side compare */
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.pair figure{margin:0;min-width:0}
+.pair-tag{display:inline-block;margin-bottom:8px;background:var(--paper);color:var(--ink);border:1px solid var(--ink);padding:5px 8px;font:500 11px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+@media (max-width:640px){.pair{grid-template-columns:minmax(0,1fr)}}
+
+/* Before/after compare */
+.cmp{position:relative;max-width:100%;border:1px solid var(--rule);background:#fff;overflow:hidden}
+.case-cover .cmp-img{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:fill}
+.cmp-range{position:absolute;inset:0;z-index:3;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize}
+.cmp-line{position:absolute;top:0;bottom:0;z-index:2;width:2px;margin-left:-1px;background:var(--ink);pointer-events:none}
+.cmp-knob{position:absolute;top:50%;left:50%;width:36px;height:36px;margin:-18px 0 0 -18px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);box-shadow:0 1px 6px rgba(0,0,0,.25)}
+.cmp-knob::before,.cmp-knob::after{content:"";position:absolute;top:50%;margin-top:-5px;border:5px solid transparent}
+.cmp-knob::before{left:5px;border-right:6px solid var(--ink);border-left:0}
+.cmp-knob::after{right:5px;border-left:6px solid var(--ink);border-right:0}
+.cmp-range:focus-visible + .cmp-line .cmp-knob{outline:2px solid var(--water);outline-offset:3px}
+.cmp-tag{position:absolute;bottom:10px;z-index:2;background:var(--paper);color:var(--ink);border:1px solid var(--ink);padding:5px 8px;font:500 11px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;pointer-events:none}
+.cmp-tag-a{left:10px}
+.cmp-tag-b{right:10px}
+
+/* Experience */
+.xp-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,360px);gap:clamp(32px,5vw,64px);align-items:start}
+.xmap-col{position:sticky;top:calc(env(safe-area-inset-top,0px) + 84px)}
+.xmap{position:relative;border:1px solid var(--ink);background:var(--water-tint)}
+.xlogo{position:absolute;top:10px;left:10px;width:148px;height:74px;pointer-events:none}
+.xlogo > *{position:absolute;inset:0;display:block;box-sizing:border-box;padding:9px 12px;background:#fff;border:1px solid var(--ink);opacity:0;transform:translateY(-4px);transition:opacity .25s,transform .25s}
+.xlogo img{display:block;width:100%;height:100%;object-fit:contain}
+.xlogo .xlogo-text{display:flex;align-items:center;justify-content:center;font:700 14px/1.15 var(--f-sans);color:#1f2a30;text-align:center}
+.xlogo .is-on{opacity:1;transform:none}
+.xmap svg{display:block;width:100%;height:auto}
+.x-land{fill:var(--paper);stroke:var(--ink);stroke-width:.8;stroke-linejoin:round}
+.x-wales{fill:var(--map);stroke:var(--ink-2);stroke-width:.6;stroke-linejoin:round}
+.x-sea{font:italic 400 12px var(--f-place);fill:var(--ink-2)}
+.x-lab{font:500 10px var(--f-mono);fill:var(--ink);paint-order:stroke;stroke:var(--paper);stroke-width:3px;stroke-linejoin:round}
+.x-lead{fill:none;stroke:var(--ink);stroke-width:.8}
+.x-north path{fill:var(--ink)}
+.x-inset{fill:var(--paper);stroke:var(--ink);stroke-width:.8}
+.x-swiss{fill:var(--map);stroke:var(--ink);stroke-width:.7;stroke-linejoin:round}
+.x-cap{font:500 8.5px var(--f-mono);fill:var(--ink-2)}
+.x-north text{font:700 9px var(--f-sans);fill:var(--ink)}
+.xm{transform-box:fill-box;transform-origin:center;transition:transform .15s,opacity .15s}
+.xm circle{stroke:var(--paper);stroke-width:1.5}
+.xm-moor circle{fill:var(--veg)}.xm-merrett circle{fill:var(--water)}.xm-force circle{fill:var(--contour)}.xm-ag circle{fill:var(--alert)}.xm-uni circle{fill:var(--uni)}.xm-kier circle{fill:var(--kier)}
+.xmap.has-hl .xm:not(.is-hl){opacity:.3}
+.xm.is-hl{transform:scale(1.6)}
+.xmap-foot{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-top:14px}
+.xkey{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:14px;min-width:0}
+.xinset{flex:none;width:120px;border:1px solid var(--ink);background:var(--paper)}
+.xinset svg{display:block;width:100%;height:auto}
+.xkey li{display:grid;grid-template-columns:12px minmax(0,1fr);gap:10px;align-items:baseline}
+.xkey .dot{width:10px;height:10px;border-radius:50%}
+.xk-moor{background:var(--veg)}.xk-merrett{background:var(--water)}.xk-force{background:var(--contour)}.xk-ag{background:var(--alert)}.xk-uni{background:var(--uni)}.xk-kier{background:var(--kier)}
+.xkey .pl{color:var(--ink-2)}
+.xkey li.is-hl b,.xp li.is-hl h3,.xp-mini li.is-hl h3{font-weight:800}
+@media (max-width:900px){.xp-grid{grid-template-columns:minmax(0,1fr)}.xmap-col{position:static;max-width:440px}}
+@media (prefers-reduced-motion: reduce){.xm,.xlogo > *{transition:none}}
+.xp-other{margin-top:clamp(40px,6vw,64px);padding-top:clamp(28px,4vw,40px);border-top:1px solid var(--rule)}
+.xp-mini{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px 40px}
+.xp-mini .when{margin:0 0 4px;font:500 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.xp-mini h3{margin:0 0 4px;font-size:1.05rem;font-weight:700}
+.xp-mini h3 .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:9px;vertical-align:.08em}
+.xp-mini p:last-child{margin:0;color:var(--ink-2);font-size:15px}
+.xp{list-style:none;margin:0;padding:0;display:grid}
+.xp li{--date:7.5rem;--gap:16px;--rail:22px;position:relative;display:grid;grid-template-columns:var(--date) var(--rail) minmax(0,1fr);column-gap:var(--gap);padding-bottom:32px}
+.xp li:last-child{padding-bottom:0}
+.xp li::before{content:"";position:absolute;left:calc(var(--date) + var(--gap) + var(--rail) / 2 - 1px);top:10px;bottom:-10px;width:2px;background:var(--ink)}
+.xp li:last-child::before{display:none}
+.xp li[data-xp="moor"]::after{background:var(--veg);border-color:var(--veg)}
+.xp li[data-xp="merrett"]::after{background:var(--water);border-color:var(--water)}
+.xp li[data-xp="force"]::after{background:var(--contour);border-color:var(--contour)}
+.xp li[data-xp="ag"]::after{background:var(--alert);border-color:var(--alert)}
+.xp li[data-xp="uni"]::after{background:var(--uni);border-color:var(--uni)}
+.xp li::after{content:"";position:absolute;left:calc(var(--date) + var(--gap) + var(--rail) / 2 - 8px);top:1px;width:16px;height:16px;border-radius:50%;background:var(--paper);border:2px solid var(--ink)}
+.xp .when{grid-column:1;margin:0;padding-top:1px;text-align:right;font:500 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);font-variant-numeric:tabular-nums}
+.xp-body{grid-column:3;min-width:0;transform-origin:0 0;transition:transform .2s ease}
+.xp li:hover .xp-body{transform:scale(1.04)}
+.xp-mini li{transform-origin:50% 0;transition:transform .2s ease}
+.xp-mini li:hover{transform:scale(1.04)}
+@media (prefers-reduced-motion: reduce){.xp-body,.xp-mini li{transition:none}}
+@media (max-width:560px){
+  .xp li{grid-template-columns:var(--rail) minmax(0,1fr);--gap:14px}
+  .xp li::before{left:calc(var(--rail) / 2 - 1px)}
+  .xp li::after{left:calc(var(--rail) / 2 - 8px)}
+  .xp li .when{grid-column:2;text-align:left;margin-bottom:6px}
+  .xp-body{grid-column:2}
+}
+.org{margin:0;font:500 12px/1.3 var(--f-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+.xp h3{margin:5px 0 6px;font-size:1.18rem;font-weight:700;font-stretch:106%}
+.xp p:not(.org){margin:0;max-width:64ch}
+.also{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:16px}
+.also li{position:relative;padding-left:20px;font-size:15.5px}
+.also li::before{content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;background:var(--water)}
+@media (max-width:780px){.xp-grid{grid-template-columns:1fr}}
+
+/* Contact */
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px clamp(36px,6vw,88px);align-items:end}
+.contact-copy{margin:18px 0 0;max-width:46ch;color:var(--ink-2)}
+.contact-list{margin:0;display:grid;border-top:1px solid var(--rule)}
+.c-row{display:grid;grid-template-columns:6.5rem minmax(0,1fr);gap:6px 16px;align-items:center;padding-block:14px;border-bottom:1px solid var(--rule)}
+.c-row dt{font:500 11.5px/1.3 var(--f-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+.c-row dd{margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;min-width:0}
+.c-val{font:500 clamp(1rem,1.9vw,1.2rem)/1.3 var(--f-mono);color:var(--ink);overflow-wrap:anywhere;user-select:all}
+a.c-val{user-select:auto;text-decoration:none}
+a.c-val:hover{font-weight:700}
+.btn-sm{padding:7px 12px;font-size:13px}
+@media (max-width:480px){.c-row{grid-template-columns:1fr}}
+@media (max-width:780px){.contact{grid-template-columns:1fr}}
+
+/* Contact on a topographic sheet */
+.topo{position:relative;overflow:hidden;background:var(--map)}
+.topo-cv{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.topo > .wrap{position:relative;z-index:1}
+.contact-panel{margin-inline:5px;padding:clamp(22px,3.5vw,40px);background:var(--paper);border:1px solid var(--ink);outline:1px solid var(--ink);outline-offset:4px}
+
+/* Footer */
+footer{border-top:1px solid var(--rule)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding-block:24px;font:400 12px/1.5 var(--f-mono);color:var(--ink-2)}
+
+/* Case study dialog */
+dialog.case{width:min(880px,calc(100% - 32px));max-width:none;max-height:calc(100dvh - 40px);padding:0;border:1px solid var(--ink);border-radius:2px;background:var(--paper);color:var(--ink)}
+dialog.case::backdrop{background:rgba(8,14,18,.62)}
+.case-in{display:flex;flex-direction:column;gap:24px;padding:clamp(20px,3.5vw,36px)}
+.case-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.case-head h2{font-size:clamp(1.5rem,3vw,2.15rem)}
+.case-head .place{margin:8px 0 0}
+.close{flex:none;width:40px;height:40px;border:1px solid var(--rule);border-radius:2px;background:transparent;color:var(--ink);font:400 22px/1 var(--f-sans);cursor:pointer}
+.close:hover{border-color:var(--ink)}
+.case-cover,.gallery figure{margin:0;min-width:0}
+.case-cover img,.gallery img{display:block;width:100%;height:auto;max-width:100%;border:1px solid var(--rule);background:#fff}
+.case-in figcaption{margin-top:8px;font-size:14px;color:var(--ink-2)}
+.gallery{display:grid;gap:32px}
+.gallery-h{margin:0 0 14px;font:500 12px/1.3 var(--f-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:16px;border-block:1px solid var(--rule);padding-block:18px}
+.fig{min-width:0}
+.fig strong{display:block;font-size:clamp(1.35rem,3vw,2rem);font-weight:750;font-stretch:110%;line-height:1.1;font-variant-numeric:tabular-nums}
+.fig span{font-size:13px;color:var(--ink-2)}
+.case-body{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(24px,4vw,44px)}
+.case-body h3{margin:0 0 8px;font:500 12px/1.3 var(--f-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+.case-body p{margin:0 0 22px}
+.case-body ol{margin:0 0 22px;padding-left:1.3em}
+.case-body li{margin-bottom:8px}
+.details dl{margin:0;display:grid;gap:16px}
+.details dt{font:500 11px/1.3 var(--f-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+.details dd{margin:3px 0 0;font-size:15px}
+.details ul{margin:0;padding-left:1.1em}
+@media (max-width:700px){.case-body{grid-template-columns:1fr}}
+
+/* Field photographs: a coverflow laid on a plan-table grid, captioned like a map legend */
+:root{--uni:#6a3d9a;--kier:#0f7f86;--panel:#ffffff;--grid:rgba(22,33,42,.065);--shadow:rgba(22,33,42,.42);--glare:rgba(255,255,255,.22)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--uni:#b49be0;--kier:#5cc6c9;--panel:#141c22;--grid:rgba(226,232,235,.05);--shadow:rgba(0,0,0,.7);--glare:rgba(255,255,255,.12)}}
+:root[data-theme="dark"]{--uni:#b49be0;--kier:#5cc6c9;--panel:#141c22;--grid:rgba(226,232,235,.05);--shadow:rgba(0,0,0,.7);--glare:rgba(255,255,255,.12)}
+
+.section.field > .field-top{padding-bottom:0}
+.section.field > .field-bottom{padding-top:clamp(24px,3.5vw,36px)}
+.field .sec-head{margin-bottom:clamp(28px,4vw,44px)}
+
+.cf{--cf-h:clamp(260px,34vw,420px);position:relative;overflow:hidden;border-top:1px solid var(--rule);background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px;background-position:50% 50%}
+.cf-track{position:relative;height:var(--cf-h);margin-block:clamp(32px,4.5vw,48px)}
+.cf-card{position:absolute;top:0;left:50%;width:calc(var(--cf-h) * .75);height:var(--cf-h);margin-left:calc(var(--cf-h) * -.375);will-change:transform}
+.cf-card img{display:block;width:100%;height:100%;object-fit:cover;border:1px solid var(--ink);background:var(--paper);pointer-events:none;user-select:none;-webkit-user-select:none;-webkit-user-drag:none}
+.cf-foot{display:flex;align-items:center;justify-content:flex-end;gap:16px}
+.cf-card .inset-label{max-width:calc(100% - 16px);font-size:11.5px;line-height:1.3;letter-spacing:.02em}
+.cf-title{flex:1;min-width:0;margin:0;font-size:clamp(1.1rem,2vw,1.35rem);font-weight:700;font-stretch:106%;line-height:1.25;text-wrap:balance}
+.cf-title.is-in{animation:cfIn .5s cubic-bezier(.2,.7,.2,1)}
+@keyframes cfIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.cf-btn{flex:none;display:grid;place-items:center;width:44px;height:44px;padding:0;border:1px solid var(--ink);border-radius:2px;background:transparent;color:var(--ink);cursor:pointer}
+.cf-btn:hover{background:var(--map)}
+.cf-btn svg{width:18px;height:18px}
+.cf-btn svg path{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.cf-btn .ic-fill{fill:currentColor;stroke:none}
+.cf-nav{position:absolute;top:50%;z-index:2;margin-top:-24px;width:48px;height:48px;border-radius:50%;background:var(--paper);box-shadow:0 4px 14px -6px var(--shadow)}
+.cf-prev{left:max(16px,env(safe-area-inset-left,0px))}
+.cf-next{right:max(16px,env(safe-area-inset-right,0px))}
+.cf-play{position:absolute;z-index:2;right:max(16px,env(safe-area-inset-right,0px));bottom:12px;width:40px;height:40px;border-radius:50%;background:var(--paper)}
+@media (prefers-reduced-motion: reduce){.cf-title.is-in{animation:none}}
+.bar ul{flex-wrap:wrap;row-gap:6px}
+@media (max-width:440px){.bar ul{gap:11px}.bar nav a{font-size:13.5px}}
+</style>
+
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 16.55 24.00" aria-hidden="true"><path class="br" d="M8.50 1.00 8.42 1.53 7.25 2.77 6.81 3.91 8.13 3.35 10.04 3.43 10.36 3.91 9.89 4.80 9.31 5.94 8.87 6.57 9.19 7.00 8.28 7.66 9.23 7.71 10.04 8.29 10.63 9.23 10.89 10.24 11.22 11.00 12.10 11.56 12.88 12.47 12.69 13.41 13.16 13.84 13.48 14.95 13.28 15.61 13.72 15.41 14.89 15.48 15.55 16.62 15.33 17.58 14.89 18.22 14.01 19.03 15.11 19.43 15.00 20.04 14.41 20.59 13.33 21.00 11.82 21.08 10.70 21.08 10.11 21.38 9.38 21.38 8.47 21.13 7.98 21.38 7.63 22.34 6.88 22.06 5.34 23.00 4.57 22.72 4.93 22.37 5.63 21.51 6.32 20.32 6.81 20.11 7.84 19.81 8.64 19.73 9.01 19.10 8.32 19.23 7.40 18.97 6.81 18.97 6.22 18.54 5.19 18.47 5.19 18.09 6.07 17.58 6.95 16.82 7.03 16.01 6.51 15.68 6.00 15.81 6.66 15.30 6.22 14.54 6.66 14.24 7.32 14.47 8.42 14.42 8.57 13.66 8.50 13.03 8.79 12.39 8.20 12.57 7.62 11.51 8.06 10.54 8.28 10.32 7.25 10.80 6.44 10.95 5.84 11.15 5.41 10.24 6.15 9.10 5.81 8.09 5.19 8.09 4.45 9.48 4.82 7.71 4.90 6.70 3.87 5.89 4.45 5.18 4.60 4.47 4.45 3.66 4.75 2.90 5.19 2.14 5.63 1.08 6.66 1.25 7.84 1.13ZM3.43 9.63 3.94 9.68 4.45 10.62 4.53 11.13 4.97 11.76 4.75 12.14 3.76 12.52 3.21 12.62 2.62 12.14 2.25 12.47 1.81 12.39 1.00 11.63 1.44 11.25 1.88 10.87 2.03 10.37 2.32 10.11 2.76 9.78Z"/><circle class="brf" cx="7.79" cy="21.08" r="1.5"/></svg>
+      <span>William Stidwell <span class="brand-sub">Portfolio</span></span>
+    </a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#about" data-label="About">About</a></li>
+        <li><a href="#work" data-label="Work">Work</a></li>
+        <li><a href="#experience" data-label="Experience">Experience</a></li>
+        <li><a href="#skills" data-label="Skills">Skills</a></li>
+        <li><a href="#field" data-label="Fieldwork">Fieldwork</a></li>
+        <li><a href="#contact" data-label="Contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="top" aria-label="Introduction">
+    <canvas id="terrain" aria-hidden="true"></canvas>
+    <div class="xh xh-v" id="xh-v" hidden></div>
+    <div class="xh xh-h" id="xh-h" hidden></div>
+    <div class="xh-dot" id="xh-dot" hidden></div>
+    <svg class="north" viewBox="0 0 30 52" aria-hidden="true"><text class="na-t" x="15" y="11" text-anchor="middle">N</text><path class="na-l" d="M15 16 6 48l9-7Z"/><path class="na-r" d="M15 16l9 32-9-7Z"/></svg>
+    <div class="wrap hero-in">
+      <div class="cartouche">
+        <p class="role">GIS · Surveying · Construction</p>
+        <h1>William Stidwell</h1>
+        <p class="lede">First-Class Geography graduate from the University of Bristol, with practical experience in GIS, remote sensing and land surveying, and on construction sites.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#work">View projects</a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+        </div>
+        <p class="avail"><span class="dot"></span>Open to graduate roles in GIS, surveying and construction</p>
+      </div>
+    </div>
+    <div class="scale" aria-hidden="true">
+      <div class="scale-bar"><i></i><i></i><i></i><i></i></div>
+      <div class="scale-lab"><span style="left:0">0</span><span style="left:50%">250</span><span style="left:100%">500 m</span></div>
+    </div>
+    <div class="status"><div class="wrap"><span id="readout" aria-live="off"></span><span class="status-r">Contour interval 20 m · index contours every 100 m</span></div></div>
+  </section>
+
+  <section class="section gridded" id="about" aria-labelledby="about-h">
+    <div class="wrap about">
+      <div class="bio">
+        <h2 id="about-h">About</h2>
+        <p>I'm a First-Class Geography graduate from the University of Bristol, looking for a graduate role in GIS, land surveying or construction. What ties these together for me is spatial data: collecting it accurately in the field, analysing it, and seeing it put to use on the ground.</p>
+        <p>I have practical experience processing and interpreting satellite imagery, aerial photography, coastal survey data and environmental datasets in QGIS, ArcGIS and R. My final-year dissertation compared multiple shoreline datasets at Seaton, evaluated their reliability and combined them to map coastal change and risk.</p>
+        <p>My wider project work covers species distribution modelling and atmospheric modelling. I also have hands-on land surveying experience, from topographic surveys and setting out to processing field data into usable site surveys.</p>
+      </div>
+      <div class="glance-box">
+        <p class="eyebrow">At a glance</p>
+        <dl class="glance">
+          <div><dt>Degree</dt><dd>First-Class Geography degree from the University of Bristol</dd></div>
+          <div><dt>Software</dt><dd>QGIS, RStudio, ArcGIS, CAD, Microsoft 365, Pano2VR</dd></div>
+          <div><dt>Surveying</dt><dd>Leica GPS and RTK GNSS, theodolite, levelling staff</dd></div>
+          <div><dt>Site cards</dt><dd>Valid CSCS card, current DBS check, full UK driving licence</dd></div>
+          <div><dt>Looking for</dt><dd>Graduate roles in GIS, land surveying and construction</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="eyebrow" id="work-count">Projects</p><h2 id="work-h">Selected projects</h2></div>
+      </div>
+      <div class="sites">
+        <div class="sites-map" id="sites-map"><svg viewBox="0 0 377.5 500.0" role="img" aria-label="Map of the UK and Ireland marking the study areas: England for the beaver habitat model, Exmoor and the Quantock Hills for the pine marten corridor, and Seaton in East Devon for the coastal risk, shoreline change and shoreline delineation projects, with a globe inset for the global methane study."><defs><clipPath id="eng-clip"><path d="M225.0 201.0 233.7 194.0 241.6 182.0 251.2 176.0 248.3 167.5 254.6 160.5 258.4 157.5 389.1 157.5 389.1 500.0 124.9 500.0 124.9 385.0 217.8 384.0 226.5 381.0 236.1 369.0 235.2 360.0 222.7 346.5 225.0 332.5 226.5 317.5 225.0 303.5 233.7 300.0 227.9 291.0 222.1 285.0 214.9 277.5 203.2 260.0 200.3 220.0 210.5 211.0 219.2 203.5Z"/></clipPath></defs><path class="m-grat" d="M23.2 0V500.0M81.3 0V500.0M139.4 0V500.0M197.4 0V500.0M255.5 0V500.0M313.6 0V500.0M371.6 0V500.0M0 450.0H377.5M0 350.0H377.5M0 250.0H377.5M0 150.0H377.5M0 50.0H377.5"/><path class="m-other" d="M131.5 245.0 120.5 247.0 108.9 237.5 101.6 244.0 92.9 242.5 76.9 227.5 85.7 220.0 94.4 212.5 97.3 202.5 103.1 197.5 110.3 190.0 106.0 185.0 99.6 181.0 90.0 187.5 81.3 190.0 72.6 192.5 65.3 207.5 72.6 222.5 63.9 235.0 49.4 235.0 26.1 237.5 23.2 252.5 34.8 260.0 20.3 272.5 34.8 285.0 52.3 290.0 43.6 295.0 37.7 307.5 26.1 320.0 39.2 320.0 26.1 332.5 10.2 342.5 26.1 350.0 14.5 357.5 27.6 367.5 30.5 377.5 40.6 375.0 61.0 370.0 75.5 360.0 92.9 352.5 110.3 343.5 129.2 341.0 133.6 325.0 139.4 302.5 136.5 287.5 133.6 270.0 132.1 252.5ZM174.8 247.5 181.5 245.0 187.3 234.0 185.8 229.0 180.0 231.0 174.8 240.0Z"/><path class="m-land" d="M225.0 17.5 223.6 28.0 200.3 52.5 191.6 75.0 217.8 64.0 255.5 65.5 261.9 75.0 252.6 92.5 241.0 115.0 232.3 127.5 238.7 136.0 220.7 149.0 239.5 150.0 255.5 161.5 267.1 180.0 272.3 200.0 278.7 215.0 296.2 226.0 311.5 244.0 307.8 262.5 317.1 271.0 323.5 293.0 319.4 306.0 328.1 302.0 351.3 303.5 364.4 326.0 360.0 345.0 351.3 357.5 333.9 373.5 355.7 381.5 353.4 393.5 341.7 404.5 320.5 412.5 290.6 414.0 268.6 414.0 257.0 420.0 242.4 420.0 224.4 415.0 214.9 420.0 207.9 439.0 193.1 433.5 162.6 452.0 147.5 446.5 154.5 439.5 168.4 422.5 182.1 399.0 191.6 395.0 212.0 389.0 227.9 387.5 235.2 375.0 221.5 377.5 203.2 372.5 191.6 372.5 180.0 364.0 159.7 362.5 159.7 355.0 177.1 345.0 194.5 330.0 196.0 314.0 185.8 307.5 175.7 310.0 188.7 300.0 180.0 285.0 188.7 279.0 201.8 283.5 223.6 282.5 226.5 267.5 225.0 255.0 230.8 242.5 219.2 246.0 207.6 225.0 216.3 206.0 220.7 201.5 200.3 211.0 184.4 214.0 172.5 218.0 164.0 200.0 178.6 177.5 171.9 157.5 159.7 157.5 145.2 185.0 152.4 150.0 153.9 130.0 133.6 114.0 145.2 100.0 148.1 86.0 145.2 70.0 151.0 55.0 159.7 40.0 168.4 19.0 188.7 22.5 212.0 20.0ZM124.9 188.0 135.0 189.0 145.2 207.5 146.6 217.5 155.3 230.0 151.0 237.5 131.5 245.0 120.5 247.0 108.9 237.5 101.6 244.0 92.9 242.5 76.9 227.5 85.7 220.0 94.4 212.5 97.3 202.5 103.1 197.5 111.8 191.0Z"/><path class="m-eng" id="m-eng" clip-path="url(#eng-clip)" d="M225.0 17.5 223.6 28.0 200.3 52.5 191.6 75.0 217.8 64.0 255.5 65.5 261.9 75.0 252.6 92.5 241.0 115.0 232.3 127.5 238.7 136.0 220.7 149.0 239.5 150.0 255.5 161.5 267.1 180.0 272.3 200.0 278.7 215.0 296.2 226.0 311.5 244.0 307.8 262.5 317.1 271.0 323.5 293.0 319.4 306.0 328.1 302.0 351.3 303.5 364.4 326.0 360.0 345.0 351.3 357.5 333.9 373.5 355.7 381.5 353.4 393.5 341.7 404.5 320.5 412.5 290.6 414.0 268.6 414.0 257.0 420.0 242.4 420.0 224.4 415.0 214.9 420.0 207.9 439.0 193.1 433.5 162.6 452.0 147.5 446.5 154.5 439.5 168.4 422.5 182.1 399.0 191.6 395.0 212.0 389.0 227.9 387.5 235.2 375.0 221.5 377.5 203.2 372.5 191.6 372.5 180.0 364.0 159.7 362.5 159.7 355.0 177.1 345.0 194.5 330.0 196.0 314.0 185.8 307.5 175.7 310.0 188.7 300.0 180.0 285.0 188.7 279.0 201.8 283.5 223.6 282.5 226.5 267.5 225.0 255.0 230.8 242.5 219.2 246.0 207.6 225.0 216.3 206.0 220.7 201.5 200.3 211.0 184.4 214.0 172.5 218.0 164.0 200.0 178.6 177.5 171.9 157.5 159.7 157.5 145.2 185.0 152.4 150.0 153.9 130.0 133.6 114.0 145.2 100.0 148.1 86.0 145.2 70.0 151.0 55.0 159.7 40.0 168.4 19.0 188.7 22.5 212.0 20.0Z"/><path class="m-land-line" d="M225.0 17.5 223.6 28.0 200.3 52.5 191.6 75.0 217.8 64.0 255.5 65.5 261.9 75.0 252.6 92.5 241.0 115.0 232.3 127.5 238.7 136.0 220.7 149.0 239.5 150.0 255.5 161.5 267.1 180.0 272.3 200.0 278.7 215.0 296.2 226.0 311.5 244.0 307.8 262.5 317.1 271.0 323.5 293.0 319.4 306.0 328.1 302.0 351.3 303.5 364.4 326.0 360.0 345.0 351.3 357.5 333.9 373.5 355.7 381.5 353.4 393.5 341.7 404.5 320.5 412.5 290.6 414.0 268.6 414.0 257.0 420.0 242.4 420.0 224.4 415.0 214.9 420.0 207.9 439.0 193.1 433.5 162.6 452.0 147.5 446.5 154.5 439.5 168.4 422.5 182.1 399.0 191.6 395.0 212.0 389.0 227.9 387.5 235.2 375.0 221.5 377.5 203.2 372.5 191.6 372.5 180.0 364.0 159.7 362.5 159.7 355.0 177.1 345.0 194.5 330.0 196.0 314.0 185.8 307.5 175.7 310.0 188.7 300.0 180.0 285.0 188.7 279.0 201.8 283.5 223.6 282.5 226.5 267.5 225.0 255.0 230.8 242.5 219.2 246.0 207.6 225.0 216.3 206.0 220.7 201.5 200.3 211.0 184.4 214.0 172.5 218.0 164.0 200.0 178.6 177.5 171.9 157.5 159.7 157.5 145.2 185.0 152.4 150.0 153.9 130.0 133.6 114.0 145.2 100.0 148.1 86.0 145.2 70.0 151.0 55.0 159.7 40.0 168.4 19.0 188.7 22.5 212.0 20.0ZM124.9 188.0 135.0 189.0 145.2 207.5 146.6 217.5 155.3 230.0 151.0 237.5 131.5 245.0 120.5 247.0 108.9 237.5 101.6 244.0 92.9 242.5 76.9 227.5 85.7 220.0 94.4 212.5 97.3 202.5 103.1 197.5 111.8 191.0Z"/><path class="m-border" d="M225.0 201.0 233.7 194.0 241.6 182.0 251.2 176.0 248.3 167.5 254.6 160.5M236.1 369.0 235.2 360.0 222.7 346.5 225.0 332.5 226.5 317.5 225.0 303.5 233.7 300.0 227.9 291.0 222.1 285.0"/><path class="m-leader" d="M224.4 415.0L175.5 464.0M224.4 415.0V464.0M224.4 415.0L273.3 464.0"/><circle class="m-pt" cx="224.4" cy="415.0" r="2.6"/><text class="m-lab m-lab-ink" x="230.4" y="410.0">Seaton</text><g class="m-scale"><rect x="314.5" y="474.0" width="22.5" height="4" class="sb-a"/><rect x="337.0" y="474.0" width="22.5" height="4" class="sb-b"/><text class="m-lab" x="314.5" y="470.0" text-anchor="middle">0</text><text class="m-lab" x="359.5" y="470.0" text-anchor="middle">100 km</text></g><text class="m-lab" x="84.3" y="494.0">8°W</text><text class="m-lab" x="200.4" y="494.0">4°W</text><text class="m-lab" x="316.6" y="494.0">0°</text><text class="m-lab" x="373.5" y="447.0" text-anchor="end">50°N</text><text class="m-lab" x="373.5" y="247.0" text-anchor="end">54°N</text><text class="m-lab" x="373.5" y="47.0" text-anchor="end">58°N</text><g class="m-inset-g"><rect x="8" y="8" width="104" height="112" class="m-inset"/><clipPath id="globe-clip"><circle cx="60.0" cy="56.0" r="36"/></clipPath><g clip-path="url(#globe-clip)"><rect x="24.0" y="20.0" width="72.0" height="18.0" class="g-a"/><rect x="24.0" y="38.0" width="72.0" height="18.0" class="g-b"/><rect x="24.0" y="56.0" width="72.0" height="18.0" class="g-a"/><rect x="24.0" y="74.0" width="72.0" height="18.0" class="g-b"/></g><ellipse cx="60.0" cy="56.0" rx="18.0" ry="36.0" class="g-line"/><ellipse cx="60.0" cy="56.0" rx="31.2" ry="36.0" class="g-line"/><path d="M28.8 38.0H91.2" class="g-line"/><path d="M24.0 56.0H96.0" class="g-line"/><path d="M28.8 74.0H91.2" class="g-line"/><path d="M60.0 20.0V92.0" class="g-line"/><circle cx="60.0" cy="56.0" r="36" class="g-rim"/><text class="m-lab" x="60.0" y="111.0" text-anchor="middle">Global · 4 bands</text></g></svg></div>
+        <div class="sites-side">
+          <h3 class="sites-h">Study sites</h3>
+          <p class="sites-note">Select a marker or a project to open its case study.</p>
+          <ul class="site-key" id="site-key"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="gridded work-cards">
+      <div class="wrap">
+        <div class="grid-bar"><div class="filters" role="group" aria-label="Filter projects by type" id="filters"></div></div>
+        <div class="grid" id="grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="experience" aria-labelledby="exp-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="eyebrow">Surveying, fieldwork and coursework</p><h2 id="exp-h">Experience</h2></div>
+      </div>
+      <div class="xp-grid">
+        <ul class="xp">
+          <li data-xp="merrett">
+            <p class="when">Oct 2026</p>
+            <div class="xp-body">
+              <p class="org">Merrett Survey</p>
+              <h3>Survey Assistant</h3>
+              <p>Processed site access video surveys for National Grid’s Exeter–Taunton–Shurton overhead line uprating project, learning new software quickly and delivering data to a professional standard. Carried out a topographic survey for a holiday home expansion, measuring the key features needed for the planning application, and processed the field data into a usable site survey.</p>
+            </div>
+          </li>
+          <li data-xp="force">
+            <p class="when">Sep 2026</p>
+            <div class="xp-body">
+              <p class="org">Force Ten Surveying</p>
+              <h3>Pre-construction setting out</h3>
+              <p>Shadowed and helped set out accurate points for new farm infrastructure, including the positions of foundations and steel I-beams, seeing how plans are transferred from a digital design to the ground.</p>
+            </div>
+          </li>
+          <li data-xp="ag">
+            <p class="when">Nov 2025</p>
+            <div class="xp-body">
+              <p class="org">AG Surveys</p>
+              <h3>Coastal surveying work experience</h3>
+              <p>Gained practical experience of coastal monitoring and beach-profile data collection using RTK GNSS survey equipment and a Leica CS20 field controller. Learned how coastal survey data is collected, classified by land type and used to monitor shoreline change.</p>
+            </div>
+          </li>
+          <li data-xp="moor">
+            <p class="when">Jul–Aug 2025</p>
+            <div class="xp-body">
+              <p class="org">Moor to Sea Ecology</p>
+              <h3>Ecological surveys</h3>
+              <p>Assisted with dusk emergence bat surveys, both voluntary and paid, using ultrasonic bat detectors to identify and record bat activity. Recorded species, frequency, timestamps and site observations accurately in a professional ecological setting.</p>
+            </div>
+          </li>
+          <li data-xp="uni">
+            <p class="when">2023–2026</p>
+            <div class="xp-body">
+              <p class="org">University of Bristol</p>
+              <h3>University GIS, spatial modelling and fieldwork</h3>
+              <p>Throughout my degree I achieved high marks in every GIS-related module. I collected data in the field, cleaned and processed it, and turned real-world field data into professional graphics and maps. Fieldwork took me across South West England and to Arolla in Switzerland, and the course gave me a strong grounding in GIS.</p>
+            </div>
+          </li>
+        </ul>
+        <div class="xmap-col">
+          <div class="xmap"><svg viewBox="0 0 444.3 508.3" role="img" aria-label="Map of south west England showing where the experience took place, coloured by organisation, with fieldwork sites for the University of Bristol at Bristol, Seaton and Slapton Sands and an inset for Arolla in Switzerland."><path class="x-wales" d="M0.0 0.0 0.0 21.2 22.2 17.6 33.3 3.5 55.5 7.1 77.8 35.3 111.1 52.9 120.0 77.7 155.5 81.2 184.4 81.2 206.6 67.1 211.0 56.5 233.3 42.4 248.8 28.2 277.7 21.2 311.0 7.1 322.1 0.0Z"/><path class="x-land" d="M0.0 148.3 15.6 144.7 44.4 137.7 60.0 135.9 84.4 137.7 111.1 141.2 140.0 144.7 171.1 155.3 199.9 148.3 215.5 144.7 231.0 143.0 237.7 148.3 244.4 134.1 239.9 113.0 228.8 104.1 244.4 102.4 248.8 97.1 246.6 83.0 259.9 77.7 275.5 63.5 295.5 45.9 311.0 38.8 319.9 21.2 328.8 0.0 444.3 0.0 444.3 360.1 437.6 357.6 424.3 354.8 411.0 353.7 404.3 352.3 397.6 350.5 388.8 349.5 364.3 356.5 333.2 338.9 297.7 321.2 266.6 312.4 257.7 317.7 228.8 323.0 224.4 328.3 215.5 328.3 191.0 331.8 173.3 349.5 153.3 354.8 151.1 349.5 143.3 330.1 140.0 331.8 143.3 353.0 146.6 358.3 142.2 367.1 133.3 379.5 137.7 405.9 126.6 409.5 120.0 418.3 131.1 430.7 115.5 448.3 111.1 458.9 103.3 469.5 101.1 483.6 102.2 494.2 88.9 492.4 84.4 499.5 66.6 497.7 51.1 487.1 44.4 473.0 33.3 466.0 11.1 462.4 0.0 458.9Z"/><text class="x-sea" x="77.8" y="102.4" text-anchor="middle">Bristol Channel</text><text class="x-sea" x="244.4" y="388.3" text-anchor="middle">Lyme Bay</text><g class="xm xm-moor" data-xp="moor"><circle cx="238.8" cy="304.6" r="5"/></g><g class="xm xm-moor" data-xp="moor"><circle cx="307.5" cy="63.5" r="5"/></g><g class="xm xm-merrett" data-xp="merrett"><circle cx="214.4" cy="312.4" r="5"/></g><g class="xm xm-merrett" data-xp="merrett"><circle cx="127.3" cy="315.9" r="5"/></g><g class="xm xm-force" data-xp="force"><circle cx="206.4" cy="307.8" r="5"/></g><g class="xm xm-force" data-xp="force"><circle cx="180.6" cy="174.4" r="5"/></g><g class="xm xm-ag" data-xp="ag"><circle cx="249.5" cy="96.7" r="5"/></g><g class="xm xm-uni" data-xp="uni"><circle cx="333.2" cy="58.2" r="5"/></g><g class="xm xm-uni" data-xp="uni"><circle cx="329.2" cy="74.8" r="5"/></g><g class="xm xm-uni" data-xp="uni"><circle cx="318.1" cy="69.9" r="5"/></g><g class="xm xm-uni" data-xp="uni"><circle cx="228.8" cy="323.0" r="5"/></g><g class="xm xm-uni" data-xp="uni"><circle cx="101.1" cy="472.3" r="5"/></g><g class="xm xm-kier" data-xp="kier"><circle cx="418.8" cy="224.2" r="5"/></g><g class="xm xm-kier" data-xp="kier"><circle cx="113.3" cy="417.6" r="5"/></g><g class="xm xm-kier" data-xp="kier"><circle cx="217.4" cy="214.8" r="5"/></g><g class="x-scale"><rect x="186.6" y="486.3" width="31.7" height="4" class="sb-a"/><rect x="218.4" y="486.3" width="31.7" height="4" class="sb-b"/><text class="m-lab" x="186.6" y="482.3" text-anchor="middle">0</text><text class="m-lab" x="250.1" y="482.3" text-anchor="middle">20 km</text></g><g class="x-north" transform="translate(422.3 14)"><path d="M0 4 6 22 0 18 -6 22Z"/><text x="0" y="0" text-anchor="middle">N</text></g></svg>
+            <div class="xlogo" aria-hidden="true">
+              <span data-logo="merrett"><img src="img/logo-merrett.webp" width="388" height="319" alt=""></span>
+              <span data-logo="force"><img src="img/logo-force.webp" width="480" height="386" alt=""></span>
+              <span data-logo="ag"><img src="img/logo-ag.webp" width="200" height="108" alt=""></span>
+              <span data-logo="moor" class="xlogo-text">Moor to Sea Ecology</span>
+              <span data-logo="uni"><img src="img/logo-uob.svg" width="556" height="166" alt=""></span>
+              <span data-logo="kier"><img src="img/logo-kier.svg" width="384" height="152" alt=""></span>
+            </div>
+          </div>
+          <div class="xmap-foot">
+            <ul class="xkey">
+              <li data-xp="merrett"><span class="dot xk-merrett"></span><span><b>Merrett Survey</b></span></li>
+              <li data-xp="force"><span class="dot xk-force"></span><span><b>Force Ten Surveying</b></span></li>
+              <li data-xp="ag"><span class="dot xk-ag"></span><span><b>AG Surveys</b></span></li>
+              <li data-xp="moor"><span class="dot xk-moor"></span><span><b>Moor to Sea Ecology</b></span></li>
+              <li data-xp="uni"><span class="dot xk-uni"></span><span><b>University of Bristol</b></span></li>
+              <li data-xp="kier"><span class="dot xk-kier"></span><span><b>Kier</b></span></li>
+            </ul>
+            <div class="xinset"><svg viewBox="0 0 120 96" role="img" aria-label="Inset map of Switzerland marking Arolla, a University of Bristol fieldwork site."><path class="x-swiss" d="M45.6 15.4 50.4 15.4 59.7 14.1 68.9 8.0 75.8 13.1 82.3 12.7 89.6 18.8 90.8 25.9 91.9 32.9 98.9 36.6 112.0 39.3 111.5 47.7 102.3 60.9 91.9 58.5 84.3 52.5 78.1 64.6 78.8 74.4 74.6 71.0 71.2 65.3 65.4 59.9 57.3 68.6 51.6 71.3 44.7 69.3 34.3 73.4 27.4 64.3 26.9 55.2 11.7 61.9 8.0 64.3 11.7 54.5 19.3 43.4 29.7 33.3 30.8 25.9 32.0 19.8 41.2 20.5Z"/><g class="xm xm-uni" data-xp="uni"><circle cx="43.1" cy="67.6" r="5"/></g><text class="x-cap" x="60.0" y="89" text-anchor="middle">Switzerland</text></svg></div>
+          </div>
+        </div>
+      </div>
+      <div class="xp-other">
+        <p class="eyebrow">Other work experience</p>
+        <ul class="xp-mini">
+          <li data-xp="kier"><p class="when">Nov 2026</p><h3><span class="dot xk-kier" aria-hidden="true"></span>Kier</h3><p>Project management work experience across HMP Guys Marsh, St Michael’s Paignton and Musgrove Park Hospital, from pre-construction through to completion.</p></li>
+          <li><p class="when">Sep 2025</p><h3>LGM Developments</h3><p>Site management work experience on a £15 million residential project in Chichester, shadowing the site manager and sitting in on architect meetings.</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section topo" id="skills" aria-labelledby="skills-h">
+    <canvas class="topo-cv" id="topo-skills" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="legend">
+        <h2 id="skills-h" class="legend-h">Skills</h2>
+        <ul class="legend-grid">
+          <li>
+            <h3>GIS analysis</h3>
+            <p>Processing, interpreting and visualising vector and raster data in QGIS, including spatial overlays, classification and risk mapping.</p>
+          </li>
+          <li>
+            <h3>Remote sensing</h3>
+            <p>Interpreting and processing satellite imagery, aerial photography and multispectral data. Calculating NDVI to map vegetation, and delineating shorelines from satellite imagery.</p>
+          </li>
+          <li>
+            <h3>Data processing</h3>
+            <p>Cleaning, restructuring and standardising large datasets from different sources and formats, including georeferencing and digitisation.</p>
+          </li>
+          <li>
+            <h3>Statistics and visualisation</h3>
+            <p>Statistical testing, spatial autocorrelation and data visualisation in RStudio and Excel.</p>
+          </li>
+          <li>
+            <h3>Environmental modelling</h3>
+            <p>Species distribution modelling with MaxEnt, PCA, climate scenario projection, least-cost path analysis and testing how data uncertainty affects model outputs.</p>
+          </li>
+          <li>
+            <h3>Surveying and field data</h3>
+            <p>Topographic surveys, setting out and GPS data collection with Leica equipment, using RTK GNSS, total stations and prisms, theodolite and levelling staff, plus systematic environmental observations.</p>
+          </li>
+          <li>
+            <h3>Map production</h3>
+            <p>Clear, well-labelled maps and figures for reports, posters and presentations.</p>
+          </li>
+        </ul>
+        <p class="legend-foot">Software: QGIS, RStudio, ArcGIS, CAD, Microsoft 365 and Pano2VR</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section field" id="field" aria-labelledby="field-h">
+    <div class="wrap field-top">
+      <div class="sec-head">
+        <div><p class="eyebrow" id="field-count">Photographs</p><h2 id="field-h">In the field</h2></div>
+        <p class="sec-note">Instruments, samples and sites, from university fieldwork to survey jobs.</p>
+      </div>
+    </div>
+    <div class="cf" id="cf" role="region" aria-roledescription="carousel" aria-label="Fieldwork photographs">
+      <div class="cf-track" id="cf-track"></div>
+      <button class="cf-btn cf-nav cf-prev" type="button" id="cf-prev" aria-label="Previous photo"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4 6.5 10l6 6"/></svg></button>
+      <button class="cf-btn cf-nav cf-next" type="button" id="cf-next" aria-label="Next photo"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7.5 4 6 6-6 6"/></svg></button>
+      <button class="cf-btn cf-play" type="button" id="cf-play" aria-label="Pause slideshow"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="ic-fill" id="cf-play-ic" d="M6 4h3v12H6zM11 4h3v12h-3z"/></svg></button>
+    </div>
+  </section>
+
+  <section class="section topo" id="contact" aria-labelledby="contact-h">
+    <canvas class="topo-cv" id="topo-cv" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="contact contact-panel">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-h">Get in touch</h2>
+        <p class="contact-copy">I'm looking for graduate roles in GIS, land surveying and construction, and would be glad to talk about any opportunities. Email is the quickest way to reach me.</p>
+      </div>
+      <dl class="contact-list">
+        <div class="c-row"><dt>Email</dt><dd><span class="c-val" id="c-email">williamstidwell17@gmail.com</span><button class="btn btn-ghost btn-sm" type="button" data-copy="c-email">Copy</button></dd></div>
+        <div class="c-row"><dt>Phone</dt><dd><span class="c-val" id="c-phone">+44 (0) 7931 388914</span><button class="btn btn-ghost btn-sm" type="button" data-copy="c-phone">Copy</button></dd></div>
+        <div class="c-row"><dt>LinkedIn</dt><dd><a class="c-val" href="https://www.linkedin.com/in/william-stidwell" target="_blank" rel="noopener">linkedin.com/in/william-stidwell ↗</a></dd></div>
+        <div class="c-row"><dt>Location</dt><dd><span class="c-val">South West England</span></dd></div>
+      </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 William Stidwell</span>
+    <span>Hero terrain is generated in your browser. Grid in metres, 1 px ≈ 2.5 m.</span>
+  </div>
+</footer>
+
+<dialog class="case" id="case" aria-labelledby="case-title">
+  <div class="case-in">
+    <div class="case-head">
+      <div>
+        <p class="eyebrow" id="case-cat"></p>
+        <h2 id="case-title"></h2>
+        <p class="place" id="case-place"></p>
+      </div>
+      <button class="close" id="case-close" type="button" aria-label="Close case study">×</button>
+    </div>
+    <figure class="case-cover" id="case-cover"></figure>
+    <div class="figs" id="case-figs"></div>
+    <div id="case-layers"></div>
+    <div class="case-body">
+      <div>
+        <h3>Overview</h3><p id="case-overview"></p>
+        <h3>Method</h3><ol id="case-method"></ol>
+        <div id="case-findings-wrap"><h3>Findings</h3><p id="case-findings"></p></div>
+      </div>
+      <aside class="details" aria-label="Project details"><dl id="case-details"></dl></aside>
+    </div>
+    <div id="case-more"><h3 class="gallery-h">More figures</h3><div class="gallery" id="case-gallery"></div></div>
+  </div>
+</dialog>
+
+
+<script>
+(() => {
+  const PROJECTS = [
+    { id: 'risk',
+      cat: 'Coastal',
+      type: 'Coastal risk mapping',
+      title: 'Coastal Risk Map of Seaton',
+      place: 'Seaton, East Devon',
+      inset: '7 input layers',
+      layers: {
+        hazard: [
+          ['erosion', 'Shoreline change', 'From the beach-profile analysis'],
+          ['geology', 'Geology', 'Bedrock scored by hardness'],
+          ['flood', 'Flood risk', 'DEFRA flood zones 2 and 3'],
+          ['vegetation', 'Vegetation (NDVI)', 'Low NDVI, less stable ground'],
+          ['cliff', 'Cliff falls', 'Known falls and their surroundings']
+        ],
+        out: [
+          ['hazard', 'Hazard index', 'Hazard layers added together, scaled 0 to 1'],
+          ['population', 'Population density', 'Who is exposed, from the 2021 census'],
+          ['defences', 'Coastal defences', 'Sea walls and rock armour reduce risk'],
+          ['risk', 'Indexed risk map', 'The final risk score for each 30 m cell']
+        ]
+      },
+      tools: ['RStudio', 'QGIS', 'Multi-criteria overlay'],
+      summary: 'A local scale risk map of Seaton built from open data, showing where coastal hazards and people overlap and where defences make the difference.',
+      overview: 'The final part of my dissertation brings together the shoreline change and NDVI results with open secondary data to map coastal risk in Seaton. Local councils have been reluctant to map risk because there is no standard framework, so I built a simple method using free data that could be repeated at any coastal town.',
+      method: [
+        'Built a 30 m grid covering Seaton, Beer and Axmouth as a template for every layer.',
+        'Rasterised each layer in RStudio and scaled it from 0 to 1 using min–max normalisation.',
+        'Added together five hazard layers: shoreline change, geology, flood zones, NDVI and cliff falls.',
+        'Multiplied the hazards by population density, then divided by coastal defences. Adding defences as a negative layer understated their effect.',
+        'Exported the result to QGIS and mapped it over satellite imagery.'
+      ],
+      findings: 'Hazard is highest at either end of Seaton beach, where nearly all the hazards overlap. The western end lines up with where £1.4 million of new rock armour was built in winter 2025. Once people and defences are included, the highest risk is around Harbour Road, the harbour and the bottom of the high street, which are low lying, densely populated and close to the sea.',
+      figs: [['7', 'input layers'], ['30 m', 'grid resolution'], ['97.75%', 'of the area below 0.1 risk']],
+      details: [
+        ['Study area', 'Seaton, East Devon'],
+        ['Hazards', 'Shoreline change, geology, flood zones, NDVI, cliff falls'],
+        ['Vulnerability', 'Population density (2021 census)'],
+        ['Defences', 'Hand-mapped from 2025 aerial photographs'],
+        ['Calculation', '(Sum of hazards × population density) ÷ coastal defences'],
+        ['Tools', 'RStudio, QGIS'],
+        ['Coordinate system', 'British National Grid']
+      ],
+      images: [
+        { src: 'img/seaton-risk.webp', w: 1800, h: 1261, natural: true,
+          alt: 'Satellite image of Seaton with an overlay of coastal risk, highest around Harbour Road and the harbour at the bottom of the town.',
+          caption: 'Indexed coastal risk over satellite imagery. Risk is highest around Harbour Road and the harbour, where the land is low lying and densely populated.' },
+        { src: 'img/seaton-hazard.webp', w: 972, h: 806,
+          alt: 'Raster map of the hazard index from 0 to 1 around Seaton, highest along the shoreline and river valleys.',
+          caption: 'Hazard index from 0 to 1, before population and defences are added, in British National Grid coordinates.' }
+      ] },
+
+    { id: 'shoreline',
+      cat: 'Coastal',
+      type: 'Shoreline change analysis',
+      title: 'Historic Shoreline Change Analysis',
+      place: 'Seaton, East Devon',
+      inset: '2007–2025',
+      tools: ['QGIS', 'ArcGIS', 'QSCAT', 'DSAS', 'RStudio'],
+      summary: 'Comparing three ways of extracting the shoreline, and two analysis tools, to find the most reliable way of measuring how Seaton beach has changed since 2007.',
+      overview: 'This project uses shoreline change analysis to find out how Seaton beach is behaving, and which method measures it best. There is little agreement on methods in the literature and results depend heavily on the data available, so I extracted shorelines from beach-profile surveys, aerial photographs and Landsat imagery, and ran each one through both QSCAT (a QGIS plugin for shoreline change analysis) and DSAS (the USGS Digital Shoreline Analysis System, run in ArcGIS).',
+      method: [
+        'Extracted shorelines three ways: converting beach-profile survey points into lines, hand-digitising aerial photographs in QGIS, and thresholding NDWI from Landsat 8.',
+        'Built a baseline from a 500 m buffer and cast transects every 50 m, using the same baseline for every method so the results line up.',
+        'Calculated end point rate, linear regression rate, net shoreline movement and shoreline change envelope in QSCAT (QGIS) and DSAS (ArcGIS).',
+        'Compared the methods and software with Kruskal–Wallis and post hoc tests in RStudio.'
+      ],
+      findings: 'There was no significant difference between QSCAT and DSAS, but the extraction method made a big difference. The profile method gave the most stable results, so it was used for the final analysis. Seaton beach is not changing evenly: both ends are growing, peaking at 1.66 m a year on the spit, the middle is stable, and there are two small erosion spots, the largest just before the western sea wall. This matches the trends in the Seaton Shoreline Management Plan baseline report.',
+      figs: [['2007–2025', 'study period'], ['3', 'extraction methods'], ['50 m', 'transect spacing'], ['1.66 m/yr', 'peak growth, on the spit']],
+      details: [
+        ['Study area', 'Seaton, East Devon'],
+        ['Period', '2007–2025'],
+        ['Data', 'Beach-profile surveys and aerial photographs (South West Coastal Monitoring Service); Landsat 8'],
+        ['Tools', 'QGIS, ArcGIS, QSCAT, DSAS, RStudio'],
+        ['Statistics', 'End point rate, linear regression rate, net shoreline movement, shoreline change envelope; Kruskal–Wallis'],
+        ['Coordinate system', 'British National Grid (EPSG:27700)'],
+        ['Basemaps', 'OpenStreetMap; Esri World Imagery']
+      ],
+      images: [
+        { src: 'img/seaton-rates.webp', w: 1456, h: 577, natural: true,
+          alt: 'Satellite image of Seaton beach with transects coloured by rate of shoreline change, from red for erosion to blue for accretion.',
+          caption: 'Linear regression rate at each transect from the profile method, from erosion (red) to growth (blue), on Esri World Imagery. Rates range from −0.11 to 1.66 m a year.' },
+        { src: 'img/seaton-transects.webp', w: 969, h: 315,
+          alt: 'Street map of Seaton seafront with evenly spaced transects running across the beach.',
+          caption: 'Transects cast every 50 m along Seaton beach, on an OpenStreetMap basemap.' }
+      ] },
+
+    { id: 'delineation',
+      cat: 'Remote sensing',
+      type: 'Remote sensing',
+      title: 'Remote Sensing Shorelines and Cliff Falls',
+      place: 'Seaton and Lyme Bay',
+      inset: 'NDWI · MultiSpec · NDVI',
+      tools: ['QGIS', 'Landsat 8', 'MultiSpec', 'RStudio'],
+      summary: 'Testing what free satellite and aerial imagery can show at Seaton: mapping the shoreline with NDWI and image classification, and spotting cliff falls with NDVI.',
+      overview: 'This project tests how far remote sensing can go at a local scale. Satellite shorelines are common in the literature, so I tested NDWI from Landsat 8 and a semi-supervised machine learning classification of aerial photographs. I also used NDVI to see whether vegetation loss could identify cliff falls along the coast, and whether it drops before a fall happens.',
+      method: [
+        'Calculated NDWI from Landsat 8 and thresholded it into a land and water mask.',
+        'Converted the mask to polygons, cleaned out noise such as the River Axe and cloud, and extracted the shoreline.',
+        'Classified an aerial photograph of Seaton in MultiSpec, training it on hand-classified areas of land and sea.',
+        'Calculated NDVI for each year from 2014 to 2025 and mapped the linear trend.',
+        'Counted how often each pixel’s NDVI fell by more than six thresholds, from 0 to −0.3, to find the threshold that best picks out cliff falls.',
+        'Compared NDVI at the Beer, Stonebarrow and West Bay slips with the surrounding land through autumn 2025, to test whether NDVI drops before a fall.'
+      ],
+      findings: 'The NDWI shoreline follows the 30 m Landsat pixels in steps, and with no tide information it gave the most variable results of any method, so it was of little use at Seaton. MultiSpec separated land from sea, but the shoreline came out as a noisy band, and differences in colour between photographs stopped it working across years. NDVI changed very little between 2014 and 2025. A decline threshold of −0.1 picked out cliff falls best, although each one still needed checking against imagery. NDVI showed no clear drop before a fall, so it can identify cliff falls but not predict them.',
+      figs: [['30 m', 'Landsat pixel size'], ['6', 'NDVI thresholds tested'], ['−0.1', 'best threshold for cliff falls']],
+      details: [
+        ['Study area', 'Seaton and the Lyme Bay coast, Devon and Dorset'],
+        ['Data', 'Landsat 8 (2014–2025); aerial photographs (South West Coastal Monitoring Service); BGS landslide records'],
+        ['Indices', 'NDWI for land and water; NDVI for vegetation'],
+        ['Methods', 'Index thresholding, raster-to-vector conversion, semi-supervised classification, NDVI trend and decline frequency'],
+        ['Tools', 'QGIS, MultiSpec, RStudio'],
+        ['Coordinate systems', 'WGS 84 / UTM zone 30N (Landsat); British National Grid (classification)']
+      ],
+      images: [
+        { src: 'img/sl-landsat.webp', w: 1477, h: 960, natural: true,
+          alt: 'True-colour Landsat image of the Devon and Dorset coast, with sediment swirling through Lyme Bay and Dartmoor showing as a pale patch inland.',
+          caption: 'Landsat true-colour composite of the Devon and Dorset coast and Lyme Bay.' },
+        { src: 'img/sl-ndwi-steps.webp', w: 1976, h: 480,
+          alt: 'Three panels: an NDWI layer with land bright and sea dark, a black and white land and water mask, and blue vector polygons tracing the coastline.',
+          caption: 'From index to coastline: NDWI, the thresholded land and water mask, and the mask converted to vector polygons.' },
+        { src: 'img/sl-blocky.webp', w: 1600, h: 749,
+          alt: 'A shoreline inside a study box at Seaton, drawn as right-angled steps that follow the Landsat pixel grid.',
+          caption: 'The NDWI shoreline clipped to the Seaton study box. Each step is a 30 m Landsat pixel, too coarse to track change from year to year.' },
+        { src: 'img/sl-ml-2009.webp', w: 2000, h: 1500,
+          alt: 'Two-class raster of Seaton with sea in dark purple and land in yellow, mixing in a noisy zone along the shoreline, and a smooth curved edge where the image ends.',
+          caption: 'MultiSpec classification of a 2009 aerial photograph of Seaton, with sea in dark purple and land in yellow. The shoreline is the noisy zone where the two classes mix; the smooth curve is the edge of the image.' },
+        { src: 'img/sl-ndvi-2014.webp', w: 1800, h: 846,
+          alt: 'NDVI map of the Lyme Bay coast from the Exe estuary to Portland, with green farmland inland, pale patches and blue sea.',
+          caption: 'Landsat NDVI along the Lyme Bay coast in 2014, from the Exe estuary to Portland, the start of the 2014–2025 comparison.' },
+        { src: 'img/sl-ndvi-decline.webp', w: 1200, h: 800,
+          alt: 'Six panels of NDVI decline frequency around Seaton at thresholds from 0 to −0.3, with fewer declining areas at stricter thresholds.',
+          caption: 'How often NDVI fell by more than each of six thresholds, from 0 to −0.3, around Seaton. At −0.1 the cliff falls stand out from the background noise.' }
+      ] },
+
+    { id: 'beaver',
+      cat: 'Modelling',
+      type: 'Species distribution modelling',
+      title: 'Species Distribution Modelling of Beaver Habitat in England',
+      place: 'England',
+      inset: 'SSP1-2.6 · SSP3-7.0',
+      compare: { a: 0, b: 1, labelA: 'Current', labelB: 'SSP3-7.0',
+        caption: 'Predicted niche today (left) and under SSP3-7.0 (right).' },
+      tools: ['RStudio', 'MaxEnt', 'QGIS'],
+      summary: 'Using MaxEnt to find where in England is suitable for Eurasian beavers now, and which areas stay suitable under low and high emission futures.',
+      overview: 'This project uses MaxEnt species distribution modelling to predict the current and future range of the Eurasian beaver in England. Beavers are ecosystem engineers whose dams slow floods and hold water through droughts, so it is important to know where reintroduction would work, now and in a changing climate.',
+      method: [
+        'Gathered 94,433 <i>Castor fiber</i> observations, 19 current climate variables, and future climate data for SSP1-2.6 (low emissions) and SSP3-7.0 (high emissions).',
+        'Processed the climate rasters in RStudio, combining them into one dataset with NA values removed.',
+        'Reduced multicollinearity between the climate variables with principal component analysis (PCA).',
+        'Trained a MaxEnt model on the current climate and observations, bootstrapped 10 times to make the prediction more robust.',
+        'Projected the future climate onto the trained model, then compared the suitable area with national park boundaries.'
+      ],
+      findings: 'The model predicts that 27.3% of England is currently suitable, falling to 21.1% under SSP1-2.6 and 15.7% under SSP3-7.0. The range shifts slightly north, with the south losing the most and becoming fragmented. The models averaged an AUC of 0.752, which is acceptable. The Lake District, Yorkshire Dales, North York Moors and Peak District stay suitable in every scenario, making them the best sites for reintroduction. Because the model uses climate alone, it marks cities such as Manchester and Leeds as suitable and the River Otter, home to over 50 beavers, as unsuitable, so adding waterways and resources would improve it.',
+      figs: [['27.3%', 'of England suitable now'], ['15.7%', 'suitable under SSP3-7.0'], ['0.752', 'average AUC'], ['10', 'bootstrap runs']],
+      details: [
+        ['Species', 'Eurasian beaver (<i>Castor fiber</i>)'],
+        ['Study area', 'England'],
+        ['Climate scenarios', 'SSP1-2.6 (low emissions) and SSP3-7.0 (high emissions)'],
+        ['Resolution', '5 arcminute grid'],
+        ['Tools', 'RStudio, MaxEnt, QGIS'],
+        ['Methods', 'PCA, bootstrapped MaxEnt model, future projection, overlay with national parks']
+      ],
+      images: [
+        { src: 'img/beaver-current.webp', w: 1800, h: 1332,
+          alt: 'Map of England showing the predicted current ecological niche for Castor fiber, with beaver observation points and model standard deviation.',
+          caption: 'Predicted niche under today’s climate, with beaver records and the areas where the bootstrapped runs disagreed most.' },
+        { src: 'img/beaver-ssp370.webp', w: 1800, h: 1336,
+          alt: 'Map of England showing a smaller predicted niche under the SSP3-7.0 scenario, concentrated in northern England.',
+          caption: 'Predicted niche under SSP3-7.0, the high emissions scenario. Suitable area falls to 15.7% of England, with the south shrinking most.' },
+        { src: 'img/beaver-parks.webp', w: 1800, h: 1445,
+          alt: 'Map of northern England showing suitable habitat overlapping the Lake District, Yorkshire Dales, North York Moors and Peak District national parks.',
+          caption: 'Suitable habitat under SSP3-7.0 compared with the northern national parks, which stay suitable even in the worst case.' },
+        { src: 'img/beaver-workflow.webp', w: 1116, h: 1133,
+          alt: 'Flowchart of the workflow: data inputs, data processing in RStudio, then training and projecting with MaxEnt.',
+          caption: 'Workflow from data inputs through processing in RStudio to MaxEnt training and projection.' }
+      ] },
+
+    { id: 'marten',
+      cat: 'Modelling',
+      type: 'Conservation and corridor planning',
+      title: 'Pine Marten Reintroduction to the Quantock Hills',
+      place: 'Exmoor to the Quantock Hills, Somerset',
+      inset: 'Corridor · least-cost path',
+      tools: ['QGIS', 'Least-cost path analysis'],
+      summary: 'A staged conservation strategy for pine marten recovery in South West England, using the Coleridge Way as a habitat corridor from Exmoor to the Quantock Hills, with a follow-up least-cost path analysis.',
+      overview: 'Pine martens have been reintroduced to Dartmoor and Exmoor, but the populations are still small and isolated. This project proposed a staged strategy: first improve habitat, connectivity, monitoring and public support, then decide in 2031 whether the Quantock Hills should become a translocation site. Published habitat suitability modelling (Scopes et al., 2025) shows suitable but fragmented habitat across the South West, with weak links between Exmoor and the Quantocks, so the plan centres on a habitat corridor along the Coleridge Way. Afterwards I added a least-cost path analysis as extra GIS work, to test which route pine martens themselves would find easiest.',
+      method: [
+        'Mapped published MaxEnt habitat suitability data (Scopes et al., 2025) for the UK and the South West, showing suitable but fragmented habitat and weak links between Exmoor and the Quantock Hills.',
+        'Mapped the Coleridge Way, an existing public footpath from Exmoor to the Quantock Hills, as a habitat corridor, with a 30 m woodland buffer either side to link fragmented woodland.',
+        'Identified the least connected section of the route and its physical barriers, the railway line and the A358, as places for wildlife crossings.',
+        'Planned public engagement and monitoring: a Pine Marten Trail, a guide for poultry keepers, and non-invasive hair tube and scat DNA surveys ahead of the 2031 decision.',
+        'Additional work: reclassified a land-use raster into a cost surface, giving each land type a positive or negative score based on how pine martens prefer to travel.',
+        'Ran a least-cost path analysis in QGIS across that surface to find the easiest route between Exmoor and the Quantock Hills, and compared it with the Coleridge Way.'
+      ],
+      findings: 'Exmoor and the Quantock Hills both hold pockets of suitable habitat, but they are separated by lower-quality, poorly connected ground, which is why a corridor between them is needed. The project concluded that a further translocation is not yet clearly justified, and should be reviewed in 2031 once monitoring shows how the existing populations are doing. The least-cost path takes a different line from the Coleridge Way, running further south across the lowland between the two, so the route pine martens would find easiest is not the same as the existing path.',
+      details: [
+        ['Species', 'Pine marten (<i>Martes martes</i>)'],
+        ['Study area', 'Exmoor and the Quantock Hills, Somerset'],
+        ['Data', 'Published MaxEnt habitat suitability (Scopes et al., 2025); land-use raster; Coleridge Way route'],
+        ['Tools', 'QGIS'],
+        ['Methods', 'Corridor mapping, buffering; least-cost path analysis (additional work)'],
+        ['Outputs', 'Coleridge Way development map, least-cost path map, Pine Marten Trail sign, poultry protection guide']
+      ],
+      images: [
+        { src: 'img/marten-lcp-comp.webp', w: 1800, h: 1217, natural: true,
+          alt: 'Map between Exmoor and the Quantock Hills showing the existing Coleridge Way in red and the modelled least-cost path for pine martens in blue, which runs further south.',
+          caption: 'Least-cost path for pine martens (blue) compared with the existing Coleridge Way (red), between Exmoor and the Quantock Hills. Additional GIS work carried out after the original project.' },
+        { src: 'img/marten-corridor.webp', w: 1800, h: 936, natural: true,
+          alt: 'Map of the Coleridge Way between Exmoor and the Quantock Hills, with an enlarged inset showing a 30 metre buffer where the route enters the Quantock Hills.',
+          caption: 'Coleridge Way development between Exmoor and the Quantock Hills, with the 30 m buffer shown where the route enters the Quantock Hills.' },
+        { src: 'img/marten-suitability.webp', w: 942, h: 2000,
+          alt: 'Habitat suitability maps for pine marten across Britain and Ireland, and a closer view of Exmoor, the Quantock Hills and Dartmoor.',
+          caption: 'Habitat suitability for pine marten across Britain and Ireland, with a closer view of Exmoor, the Quantock Hills and Dartmoor. Mapped from published MaxEnt data (Scopes et al., 2025).' },
+        { src: 'img/marten-trail.webp', w: 1411, h: 2000,
+          alt: 'Illustrated Pine Marten Trail sign with a signpost to Exmoor and the Quantocks, a discovery hut and a route map marked You are here.',
+          caption: 'Pine Marten Trail sign for visitors.' },
+        { src: 'img/marten-poultry.webp', w: 1416, h: 2000,
+          alt: 'Illustrated guide on protecting birds from pine martens: lock coops, replace dead wood, electric fencing, keep coops 3 metres from trees and fill holes over 50 millimetres.',
+          caption: 'Guide for poultry keepers on protecting birds from pine martens.' }
+      ] },
+
+    { id: 'methane',
+      cat: 'Modelling',
+      type: 'Atmospheric modelling',
+      title: 'Atmospheric Modelling of Methane Isotopes',
+      place: 'Global',
+      inset: '12-box model',
+      tools: ['RStudio', 'QGIS', '12-box atmospheric model'],
+      summary: 'Mapping how methane source isotope signatures vary around the world, and testing how much averaging them into latitude bands changes a 12-box atmospheric model.',
+      overview: 'Methane is a powerful greenhouse gas, and its isotopes act as a fingerprint for where it comes from. This project uses NOAA’s global inventory of δ<sup>13</sup>C-CH<sub>4</sub> source signatures to map how they vary around the world, then tests how much averaging them into four latitude bands changes the output of a 12-box atmospheric model. I carried out all the data processing, statistics and mapping, and produced the final research poster.',
+      method: [
+        'Started from the NOAA Global Inventory of δ<sup>13</sup>C-CH<sub>4</sub> point-source observations, many of which were missing location fields.',
+        'Used a geoBoundaries world shapefile to give each country a latitude and longitude, and matched the isotope observations to this consistent location field.',
+        'Calculated the mean δ<sup>13</sup>C-CH<sub>4</sub> for each country, mapped the spatial variation and tested it for spatial autocorrelation with Moran’s I.',
+        'Aggregated the country means to the four latitude bands of the 12-box model: 90–30°N, 30–0°N, 0–30°S and 30–90°S.',
+        'Because NOAA’s reported uncertainty was inconsistent, calculated the standard deviation and standard error for each latitude band.',
+        'Ran the model with emissions held constant, using the mean, mean ± SD and mean ± SE source signatures.'
+      ],
+      findings: 'The latitude band averages were very similar, from −44.26‰ to −46.53‰, but the spread within each band was large, with standard deviations of around 10‰. Moran’s I found no spatial autocorrelation (I = −0.104, p = 0.724), so nearby countries were no more alike than distant ones. In the model, the ±1 SD runs spread up to 17.4‰ apart, compared with 1.04‰ for ±1 SE, about 17 times larger. How the source data is grouped and averaged matters far more than the differences between latitude bands.',
+      figs: [['12', 'box atmospheric model'], ['4', 'latitude bands'], ['11,211', 'δ<sup>13</sup>C observations'], ['17.4‰', 'spread between ± SD runs']],
+      details: [
+        ['Data', 'NOAA Global Inventory of δ<sup>13</sup>C-CH<sub>4</sub> point-source observations (11,211 δ<sup>13</sup>C and 3,755 δD); geoBoundaries world shapefile'],
+        ['Model', '12-box atmospheric model, four latitude bands'],
+        ['Model inputs', 'Emissions, starting source signature, OH reactivity, δ<sup>13</sup>C-CH<sub>4</sub> reference (VPDB)'],
+        ['Analysis', 'Country and latitude band aggregation, Moran’s I, uncertainty testing with SD and SE'],
+        ['Tools', 'RStudio, QGIS'],
+        ['Outputs', 'Statistical analysis, maps, plots and a research poster']
+      ],
+      images: [
+        { src: 'img/atmos-countries.webp', w: 1006, h: 541, natural: true,
+          alt: 'World map shading each country by mean delta 13C methane source signature, with dashed lines marking the four latitude bands.',
+          caption: 'Mean δ<sup>13</sup>C-CH<sub>4</sub> source signature by country, with the four latitude bands used in the model.' },
+        { src: 'img/atmos-model.webp', w: 1136, h: 1410,
+          alt: 'Line chart of modelled atmospheric delta 13C methane from 1990 to 2200 for each latitude box, with the final five years enlarged.',
+          caption: 'Modelled atmospheric δ<sup>13</sup>C-CH<sub>4</sub> for each latitude box under the mean, ±1 SD and ±1 SE source signatures, with emissions held constant. The lower plot enlarges the final five years.' },
+        { src: 'img/atmos-isotopes.webp', w: 727, h: 573,
+          alt: 'Scatter plot of delta D against delta 13C methane, coloured by source group: biomass, fossil fuels and microbial.',
+          caption: 'δD against δ<sup>13</sup>C-CH<sub>4</sub> for each observation, grouped by source. Using both isotopes helps separate sources, but fossil fuel and microbial methane overlap.' },
+        { src: 'img/atmos-workflow.webp', w: 1530, h: 1215,
+          alt: 'Poster panel showing the workflow from input data to modelling, with latitude band summary statistics and the points where uncertainty enters.',
+          caption: 'Workflow from input data to modelling, showing where uncertainty enters at each stage.' }
+      ] },
+  ];
+
+  /* ---------- helpers ---------- */
+  const root = document.documentElement;
+  const $ = id => document.getElementById(id);
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const css = n => getComputedStyle(root).getPropertyValue(n).trim();
+  const palette = () => ({
+    paper: css('--paper'), map: css('--map'), ink: css('--ink'), ink2: css('--ink-2'),
+    water: css('--water'), waterTint: css('--water-tint'), contour: css('--contour')
+  });
+  const rgb = h => /^#[0-9a-f]{6}$/i.test(h) ? [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)] : [128, 128, 128];
+  const rgba = (h, a) => { const c = rgb(h); return `rgba(${c[0]},${c[1]},${c[2]},${a})`; };
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const MONO = '500 10px "IBM Plex Mono", ui-monospace, Menlo, monospace';
+
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = a + 0x6D2B79F5 | 0;
+      let t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+
+  function makeNoise(seed) {
+    const rnd = mulberry32(seed);
+    const p = new Uint8Array(256);
+    for (let i = 0; i < 256; i++) p[i] = i;
+    for (let i = 255; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); const t = p[i]; p[i] = p[j]; p[j] = t; }
+    const perm = new Uint8Array(512);
+    for (let i = 0; i < 512; i++) perm[i] = p[i & 255];
+    const GX = [1, -1, 1, -1, 1, -1, 0, 0], GY = [1, 1, -1, -1, 0, 0, 1, -1];
+    const fade = t => t * t * t * (t * (t * 6 - 15) + 10);
+    function n2(x, y) {
+      const X = Math.floor(x), Y = Math.floor(y), xf = x - X, yf = y - Y, xi = X & 255, yi = Y & 255;
+      const a = perm[perm[xi] + yi] & 7, b = perm[perm[xi + 1] + yi] & 7;
+      const c = perm[perm[xi] + yi + 1] & 7, d = perm[perm[xi + 1] + yi + 1] & 7;
+      const u = fade(xf), v = fade(yf);
+      const x1 = GX[a] * xf + GY[a] * yf, x2 = GX[b] * (xf - 1) + GY[b] * yf;
+      const y1 = GX[c] * xf + GY[c] * (yf - 1), y2 = GX[d] * (xf - 1) + GY[d] * (yf - 1);
+      const l1 = x1 + (x2 - x1) * u, l2 = y1 + (y2 - y1) * u;
+      return l1 + (l2 - l1) * v;
+    }
+    function fbm(x, y, o) {
+      o = o || 4; let s = 0, a = 1, f = 1, n = 0;
+      for (let k = 0; k < o; k++) { s += a * n2(x * f + k * 17.3, y * f + k * 9.1); n += a; a *= 0.5; f *= 2.03; }
+      return s / n;
+    }
+    return { n2, fbm };
+  }
+
+  function prep(cv) {
+    const r = cv.getBoundingClientRect();
+    const w = Math.max(1, r.width), h = Math.max(1, r.height);
+    const d = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = Math.round(w * d); cv.height = Math.round(h * d);
+    const ctx = cv.getContext('2d');
+    ctx.setTransform(d, 0, 0, d, 0, 0);
+    ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+    return { ctx, w, h };
+  }
+
+  function grid(w, h, step, fn) {
+    const nx = Math.ceil(w / step) + 2, ny = Math.ceil(h / step) + 2;
+    const F = new Float32Array(nx * ny);
+    let min = Infinity, max = -Infinity;
+    for (let j = 0; j < ny; j++) for (let i = 0; i < nx; i++) {
+      const v = fn(i * step, j * step); F[j * nx + i] = v;
+      if (v < min) min = v; if (v > max) max = v;
+    }
+    return { F, nx, ny, step, min, max };
+  }
+
+  // Marching squares: add the isoline at level lv to the current path.
+  function iso(ctx, g, lv) {
+    const { F, nx, ny, step: s } = g;
+    const seg = (a, b) => { ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); };
+    for (let j = 0; j < ny - 1; j++) {
+      for (let i = 0; i < nx - 1; i++) {
+        const tl = F[j * nx + i], tr = F[j * nx + i + 1], br = F[(j + 1) * nx + i + 1], bl = F[(j + 1) * nx + i];
+        const c = (tl > lv ? 8 : 0) | (tr > lv ? 4 : 0) | (br > lv ? 2 : 0) | (bl > lv ? 1 : 0);
+        if (c === 0 || c === 15) continue;
+        const x = i * s, y = j * s;
+        const T = [x + s * (lv - tl) / (tr - tl), y];
+        const R = [x + s, y + s * (lv - tr) / (br - tr)];
+        const B = [x + s * (lv - bl) / (br - bl), y + s];
+        const L = [x, y + s * (lv - tl) / (bl - tl)];
+        switch (c) {
+          case 1: case 14: seg(L, B); break;
+          case 2: case 13: seg(B, R); break;
+          case 3: case 12: seg(L, R); break;
+          case 4: case 11: seg(T, R); break;
+          case 5: seg(L, T); seg(B, R); break;
+          case 6: case 9: seg(T, B); break;
+          case 7: case 8: seg(L, T); break;
+          case 10: seg(T, R); seg(L, B); break;
+        }
+      }
+    }
+  }
+
+  // Paint a smoothed raster from the grid: fn(value) -> [r,g,b,a] or null.
+  function raster(ctx, g, fn) {
+    const { F, nx, ny, step } = g;
+    const off = document.createElement('canvas'); off.width = nx; off.height = ny;
+    const oc = off.getContext('2d'); const img = oc.createImageData(nx, ny);
+    for (let k = 0; k < F.length; k++) {
+      const c = fn(F[k]); if (!c) continue;
+      img.data[k * 4] = c[0]; img.data[k * 4 + 1] = c[1]; img.data[k * 4 + 2] = c[2]; img.data[k * 4 + 3] = c[3];
+    }
+    oc.putImageData(img, 0, 0);
+    ctx.save(); ctx.imageSmoothingEnabled = true;
+    ctx.drawImage(off, -step / 2, -step / 2, nx * step, ny * step);
+    ctx.restore();
+  }
+
+  /* ---------- project cards and filters ---------- */
+  const gridEl = $('grid');
+  $('work-count').textContent = PROJECTS.length === 1 ? '1 project' : `${PROJECTS.length} projects`;
+
+  // Overview of every figure for the hover panel: rows of images that share a height,
+  // picked so the panel covers the thumbnail without stretching far below it.
+  function sheetHTML(p, cover) {
+    if (p.images.length < 2) return '';
+    const ims = p.images.slice(0, 4), n = ims.length, asp = ims.map(im => im.w / im.h);
+    const thumbH = cover.natural ? cover.h / cover.w : 3 / 4;
+    const cands = [];
+    for (let mask = 0; mask < 1 << (n - 1); mask++) {
+      const rows = []; let cur = [0];
+      for (let i = 1; i < n; i++) { if (mask & (1 << (i - 1))) { rows.push(cur); cur = [i]; } else cur.push(i); }
+      rows.push(cur);
+      cands.push({ rows, h: rows.reduce((t, r) => t + 1 / r.reduce((s, i) => s + asp[i], 0), 0) });
+    }
+    const cover_ = cands.filter(c => c.h >= thumbH && c.h <= thumbH + 0.5).sort((x, y) => x.h - y.h)[0];
+    const pick = cover_ || cands.sort((x, y) => Math.abs(x.h - thumbH) - Math.abs(y.h - thumbH))[0];
+    return `<div class="thumb-sheet" aria-hidden="true" style="--th:${thumbH.toFixed(4)}">${pick.rows.map(r => `<div class="sr">${r.map(i => `<img src="${ims[i].src}" alt="" loading="lazy" decoding="async" style="flex:${asp[i].toFixed(4)} 1 0%;aspect-ratio:${ims[i].w}/${ims[i].h}">`).join('')}</div>`).join('')}</div>`;
+  }
+
+  PROJECTS.forEach(p => {
+    const cover = p.images[0];
+    const card = document.createElement('article');
+    card.className = 'card'; card.dataset.cat = p.cat;
+    card.innerHTML = `
+      <div class="thumb"${cover.natural ? ` style="aspect-ratio:${cover.w}/${cover.h}"` : ''}>${cover.backdrop ? `<img class="thumb-bg" src="${cover.src}" alt="" aria-hidden="true" decoding="async">` : ''}<img src="${cover.src}" width="${cover.w}" height="${cover.h}" alt="${esc(cover.alt)}" decoding="async" style="object-fit:${cover.fit || 'cover'};object-position:${cover.pos || '50% 50%'}${cover.backdrop ? ';position:relative;background:transparent' : ''}">${p.inset ? `<span class="inset-label">${p.inset}</span>` : ''}</div>
+      ${sheetHTML(p, cover)}
+      <div class="card-top"><span>${p.type}</span>${p.context ? `<span>${p.context}</span>` : ''}</div>
+      <h3><button type="button" class="card-link" data-id="${p.id}">${p.title}</button></h3>
+      <p class="place">${p.place}</p>
+      <p class="summary">${p.summary}</p>
+      <p class="tools">${p.tools.join(' · ')}</p>
+      <span class="more" aria-hidden="true">Read case study →</span>`;
+    gridEl.appendChild(card);
+  });
+
+  // Two independent columns (one on narrow screens): each box sits 32px below the one above it.
+  // Cards alternate left/right so the reading order stays 1, 2 / 3, 4 / 5.
+  const cardEls = [...gridEl.querySelectorAll('.card')];
+  let colCount = 0;
+  function layoutCards(force) {
+    const n = gridEl.clientWidth >= 832 ? 2 : 1;
+    if (n === colCount && !force) return;
+    colCount = n;
+    const cols = Array.from({ length: n }, () => { const c = document.createElement('div'); c.className = 'grid-col'; return c; });
+    cardEls.filter(c => !c.hidden).forEach((c, i) => cols[i % n].appendChild(c));
+    cardEls.filter(c => c.hidden).forEach(c => cols[0].appendChild(c));
+    gridEl.replaceChildren(...cols);
+  }
+  layoutCards(true);
+  new ResizeObserver(() => layoutCards(false)).observe(gridEl);
+
+  const filtersEl = $('filters');
+  const cats = [...new Set(PROJECTS.map(p => p.cat))];
+  if (cats.length < 2) {
+    filtersEl.hidden = true;
+  } else {
+    [['all', 'All', PROJECTS.length]].concat(cats.map(c => [c, c, PROJECTS.filter(p => p.cat === c).length])).forEach(([key, label, n], i) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.dataset.filter = key;
+      b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+      b.innerHTML = `${label}<span class="n">${n}</span>`;
+      filtersEl.appendChild(b);
+    });
+    filtersEl.addEventListener('click', e => {
+      const b = e.target.closest('.chip'); if (!b) return;
+      const key = b.dataset.filter;
+      filtersEl.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c === b ? 'true' : 'false'));
+      gridEl.querySelectorAll('.card').forEach(c => { c.hidden = !(key === 'all' || c.dataset.cat === key); });
+      layoutCards(true);
+    });
+  }
+
+  /* ---------- case study dialog ---------- */
+  const dlg = $('case');
+  let lastTrigger = null;
+  const figureHTML = (im, lazy) => `<img src="${im.src}" width="${im.w}" height="${im.h}" alt="${esc(im.alt)}"${lazy ? ' loading="lazy"' : ''} decoding="async"><figcaption>${im.caption}</figcaption>`;
+
+  const compareHTML = p => {
+    const A = p.images[p.compare.a], B = p.images[p.compare.b], c = p.compare;
+    return `<div class="pair">
+      <figure><span class="pair-tag">${c.labelA}</span><img src="${A.src}" width="${A.w}" height="${A.h}" alt="${esc(A.alt)}" decoding="async"><figcaption>${A.caption}</figcaption></figure>
+      <figure><span class="pair-tag">${c.labelB}</span><img src="${B.src}" width="${B.w}" height="${B.h}" alt="${esc(B.alt)}" decoding="async"><figcaption>${B.caption}</figcaption></figure>
+    </div>`;
+  };
+
+  // Layer legend: each layer drawn as a tilted sheet, stacked like a GIS layer list.
+  const RH = '55,2 108,22 55,42 2,22';
+  const LAYER_FILL = {
+    erosion: '<defs><linearGradient id="lf-ero" x1="0" x2="1"><stop offset="0" stop-color="#d7191c"/><stop offset=".5" stop-color="#ffffbf"/><stop offset="1" stop-color="#2c7bb6"/></linearGradient></defs><polygon points="' + RH + '" fill="url(#lf-ero)"/>',
+    geology: '<defs><pattern id="lf-geo" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="7" height="7" fill="#dcc9a6"/><path d="M0 0V7" stroke="#8a6d46" stroke-width="2"/></pattern></defs><polygon points="' + RH + '" fill="url(#lf-geo)"/>',
+    flood: '<defs><pattern id="lf-fl" width="16" height="8" patternUnits="userSpaceOnUse"><rect width="16" height="8" fill="#cfe3f5"/><path d="M0 5q4-4 8 0t8 0" fill="none" stroke="#2c7bb6" stroke-width="1.3"/></pattern></defs><polygon points="' + RH + '" fill="url(#lf-fl)"/>',
+    vegetation: '<defs><pattern id="lf-veg" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#d3e6c4"/><circle cx="5" cy="5" r="2.6" fill="#4d7c3b"/></pattern></defs><polygon points="' + RH + '" fill="url(#lf-veg)"/>',
+    cliff: '<defs><pattern id="lf-cliff" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#ecd9c6"/><path d="M0 9L5 2L10 9" fill="none" stroke="#9c5a2e" stroke-width="1.3"/></pattern></defs><polygon points="' + RH + '" fill="url(#lf-cliff)"/>',
+    defences: '<defs><pattern id="lf-def" width="12" height="6" patternUnits="userSpaceOnUse"><rect width="12" height="6" fill="#e3e1dc"/><path d="M0 0H12M0 3H12M6 0V3M0 3V6" stroke="#8f8b80" stroke-width=".9"/></pattern></defs><polygon points="' + RH + '" fill="url(#lf-def)"/><path d="M2 22 55 42" stroke="#3d3a33" stroke-width="4" stroke-linecap="round"/>',
+    population: '<defs><pattern id="lf-pop" width="9" height="9" patternUnits="userSpaceOnUse"><rect width="9" height="9" fill="#ece3f3"/><circle cx="2" cy="2" r="1.4" fill="#6a3d9a"/><circle cx="6.5" cy="6" r="1.4" fill="#6a3d9a"/></pattern></defs><polygon points="' + RH + '" fill="url(#lf-pop)"/>',
+    hazard: '<defs><linearGradient id="lf-haz" x1="0" x2="1"><stop offset="0" stop-color="#440154"/><stop offset=".25" stop-color="#3b528b"/><stop offset=".5" stop-color="#21918c"/><stop offset=".75" stop-color="#5ec962"/><stop offset="1" stop-color="#fde725"/></linearGradient></defs><polygon points="' + RH + '" fill="url(#lf-haz)"/>',
+    risk: '<defs><linearGradient id="lf-risk" x1="0" x2="1"><stop offset="0" stop-color="#3b2a8f"/><stop offset=".3" stop-color="#3f7fd8"/><stop offset=".55" stop-color="#39c1a5"/><stop offset=".8" stop-color="#f2c13a"/><stop offset="1" stop-color="#c62d2d"/></linearGradient></defs><polygon points="' + RH + '" fill="url(#lf-risk)"/>'
+  };
+  const layerIcon = k => `<svg class="lyr" viewBox="0 0 110 44" aria-hidden="true">${LAYER_FILL[k] || ''}<polygon class="edge" points="${RH}"/></svg>`;
+  const layerRow = ([k, name, note], z) => `<li style="z-index:${z}">${layerIcon(k)}<span><span class="lname">${name}</span><span class="lnote">${note}</span></span></li>`;
+  const layersHTML = L => {
+    const n = L.hazard.length;
+    const [haz, pop, def, risk] = L.out;
+    return `<div class="layers">
+      <div><p class="eyebrow">Hazard layers</p><ol class="lstack">${L.hazard.map((r, i) => layerRow(r, n - i)).join('')}</ol></div>
+      <div class="lflow" aria-hidden="true"><svg viewBox="0 0 40 24"><path d="M3 12h32M27 5l8 7-8 7"/></svg></div>
+      <div><p class="eyebrow">Combined into</p><ul class="lout">${layerRow(haz, 4)}<li aria-hidden="true"><span class="lop">×</span><span></span></li>${layerRow(pop, 3)}<li aria-hidden="true"><span class="lop">÷</span><span></span></li>${layerRow(def, 2)}<li aria-hidden="true"><span class="lop">=</span><span></span></li>${layerRow(risk, 1)}</ul></div>
+    </div>`;
+  };
+
+  function openCase(id, trigger) {
+    const p = PROJECTS.find(x => x.id === id); if (!p) return;
+    lastTrigger = trigger;
+    $('case-cat').textContent = p.context ? `${p.type} · ${p.context}` : p.type;
+    $('case-title').textContent = p.title;
+    $('case-place').textContent = p.place;
+    const used = p.compare ? [p.compare.a, p.compare.b] : [0];
+    $('case-cover').innerHTML = p.compare ? compareHTML(p) : figureHTML(p.images[0], false);
+    $('case-figs').innerHTML = (p.figs || []).map(([n, l]) => `<div class="fig"><strong>${n}</strong><span>${l}</span></div>`).join('');
+    $('case-figs').hidden = !(p.figs && p.figs.length);
+    $('case-layers').innerHTML = p.layers ? layersHTML(p.layers) : '';
+    $('case-layers').hidden = !p.layers;
+    $('case-overview').innerHTML = p.overview;
+    $('case-method').innerHTML = p.method.map(m => `<li>${m}</li>`).join('');
+    $('case-findings').innerHTML = p.findings || '';
+    $('case-findings-wrap').hidden = !p.findings;
+    $('case-details').innerHTML = p.details.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
+    const rest = p.images.filter((im, i) => !used.includes(i));
+    $('case-gallery').innerHTML = rest.map(im => `<figure>${figureHTML(im, true)}</figure>`).join('');
+    $('case-more').hidden = rest.length === 0;
+    dlg.showModal();
+    dlg.scrollTop = 0;
+    const rng = $('cmp-range');
+    if (rng) {
+      const top = dlg.querySelector('.cmp-top'), line = $('cmp-line');
+      rng.addEventListener('input', () => {
+        const v = Number(rng.value);
+        top.style.clipPath = `inset(0 ${100 - v}% 0 0)`;
+        line.style.left = v + '%';
+      });
+    }
+  }
+  gridEl.addEventListener('click', e => { const b = e.target.closest('.card-link'); if (b) openCase(b.dataset.id, b); });
+  $('case-close').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', () => { if (lastTrigger) lastTrigger.focus(); });
+
+
+  /* ---------- study sites map ---------- */
+  const SITE_POS = {"beaver": [66.92, 47.5], "marten": [57.31, 78.5], "methane": [15.9, 11.2], "risk": [46.49, 92.8], "shoreline": [59.44, 92.8], "delineation": [72.4, 92.8]};
+  const mapEl = $('sites-map'), keyEl = $('site-key'), engEl = $('m-eng');
+  PROJECTS.forEach((p, i) => {
+    const pos = SITE_POS[p.id]; if (!pos) return;
+    const mk = document.createElement('button');
+    mk.type = 'button'; mk.className = 'site-mk'; mk.dataset.site = p.id; mk.textContent = i + 1;
+    mk.style.left = pos[0] + '%'; mk.style.top = pos[1] + '%';
+    mk.setAttribute('aria-label', `${i + 1}: ${p.title}, ${p.place}. Open case study`);
+    mapEl.appendChild(mk);
+    const li = document.createElement('li');
+    li.innerHTML = `<button type="button" data-site="${p.id}"><span class="mk" aria-hidden="true">${i + 1}</span><strong>${p.title}</strong><span class="pl">${p.place}</span></button>`;
+    keyEl.appendChild(li);
+  });
+  const sitesEl = document.querySelector('.sites');
+  const clearHl = () => { sitesEl.querySelectorAll('.is-hl').forEach(el => el.classList.remove('is-hl')); };
+  const setHl = id => {
+    clearHl();
+    sitesEl.querySelectorAll(`[data-site="${id}"]`).forEach(el => el.classList.add('is-hl'));
+    if (id === 'beaver' && engEl) engEl.classList.add('is-hl');
+  };
+  sitesEl.addEventListener('pointerover', e => { const t = e.target.closest('[data-site]'); if (t) setHl(t.dataset.site); else clearHl(); });
+  sitesEl.addEventListener('pointerleave', clearHl);
+  sitesEl.addEventListener('focusin', e => { const t = e.target.closest('[data-site]'); if (t) setHl(t.dataset.site); });
+  sitesEl.addEventListener('focusout', clearHl);
+  sitesEl.addEventListener('click', e => { const t = e.target.closest('[data-site]'); if (t) openCase(t.dataset.site, t); });
+
+  /* ---------- experience map ---------- */
+  const xpSec = $('experience'), xmapEl = xpSec && xpSec.querySelector('.xmap');
+  if (xmapEl) {
+    const logos = xmapEl.querySelectorAll('[data-logo]');
+    const clearXp = () => { xmapEl.classList.remove('has-hl'); xpSec.querySelectorAll('.is-hl').forEach(el => el.classList.remove('is-hl')); logos.forEach(el => el.classList.remove('is-on')); };
+    const setXp = k => { clearXp(); xmapEl.classList.add('has-hl'); xpSec.querySelectorAll(`[data-xp="${k}"]`).forEach(el => el.classList.add('is-hl')); logos.forEach(el => el.classList.toggle('is-on', el.dataset.logo === k)); };
+    xpSec.addEventListener('pointerover', e => { const t = e.target.closest('[data-xp]'); if (t) setXp(t.dataset.xp); else clearXp(); });
+    xpSec.addEventListener('pointerleave', clearXp);
+  }
+
+  /* ---------- hero terrain ---------- */
+  const hero = document.querySelector('.hero');
+  const tcv = $('terrain');
+  const HN = makeNoise(7);
+  const MPP = 2.5, CI = 20, WATER = 110;
+  const elev = (x, y) => Math.max(0, 265 + HN.fbm(x / 330 + 11.3, y / 330 + 4.7, 5) * 620);
+  let heroRun = 0, heroKey = '', heroAnim = false;
+
+  function ticks(ctx, w, h, C) {
+    const km = 1000 / MPP, sub = 250 / MPP;
+    ctx.strokeStyle = rgba(C.ink, 0.55); ctx.lineWidth = 1; ctx.beginPath();
+    for (let i = 1; i * sub < w; i++) { const x = Math.round(i * sub) + 0.5, big = i % 4 === 0; ctx.moveTo(x, 0); ctx.lineTo(x, big ? 10 : 5); }
+    for (let i = 1; i * sub < h; i++) { const y = Math.round(i * sub) + 0.5, big = i % 4 === 0; ctx.moveTo(0, y); ctx.lineTo(big ? 10 : 5, y); }
+    ctx.stroke();
+    ctx.font = MONO; ctx.fillStyle = C.ink2; ctx.textBaseline = 'top';
+    for (let k = 1; k * km < w - 40; k++) ctx.fillText(k + ' km', k * km + 4, 5);
+  }
+
+  function drawHero(animate) {
+    const run = ++heroRun;
+    const { ctx, w, h } = prep(tcv);
+    heroKey = Math.round(w) + 'x' + Math.round(h);
+    const C = palette();
+    const g = grid(w, h, 6, elev);
+    ctx.fillStyle = C.map; ctx.fillRect(0, 0, w, h);
+    const wt = rgb(C.waterTint);
+    raster(ctx, g, v => v < WATER ? [wt[0], wt[1], wt[2], Math.round(255 * clamp((WATER - v) / 16, 0, 1))] : null);
+    ctx.strokeStyle = C.water; ctx.lineWidth = 1.1; ctx.beginPath(); iso(ctx, g, WATER); ctx.stroke();
+    const levels = [];
+    for (let lv = Math.ceil((WATER + 1) / CI) * CI; lv <= g.max; lv += CI) levels.push(lv);
+    const drawLevel = lv => {
+      const idx = lv % 100 === 0;
+      ctx.strokeStyle = rgba(C.contour, idx ? 0.8 : 0.42); ctx.lineWidth = idx ? 1.25 : 0.7;
+      ctx.beginPath(); iso(ctx, g, lv); ctx.stroke();
+    };
+    if (!animate || reduce) { heroAnim = false; levels.forEach(drawLevel); ticks(ctx, w, h, C); return; }
+    heroAnim = true;
+    let done = 0; const t0 = performance.now(), dur = 1500;
+    const frame = now => {
+      if (run !== heroRun) return;
+      const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      const target = Math.round(levels.length * e);
+      while (done < target) drawLevel(levels[done++]);
+      if (k < 1) requestAnimationFrame(frame);
+      else { heroAnim = false; ticks(ctx, w, h, C); }
+    };
+    requestAnimationFrame(frame);
+  }
+
+  let hT = 0;
+  new ResizeObserver(() => {
+    const r = tcv.getBoundingClientRect();
+    if (Math.round(r.width) + 'x' + Math.round(r.height) === heroKey) return;
+    clearTimeout(hT); hT = setTimeout(() => drawHero(false), 120);
+  }).observe(tcv);
+
+  const fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+  Promise.race([fontsReady, new Promise(r => setTimeout(r, 700))]).then(() => drawHero(true));
+  fontsReady.then(() => { if (!heroAnim && heroKey) drawHero(false); });
+
+  /* ---------- hero readout ---------- */
+  const ro = $('readout');
+  const xv = $('xh-v'), xh = $('xh-h'), dot = $('xh-dot');
+  const status = hero.querySelector('.status');
+  const idleMsg = matchMedia('(hover: none)').matches ? 'Tap the map to read grid position and height' : 'Move across the map to read grid position and height';
+  ro.textContent = idleMsg;
+  const fmt = n => n.toLocaleString('en-GB');
+  const hideXh = () => { xv.hidden = xh.hidden = dot.hidden = true; };
+  function onMove(e) {
+    if (e.target.closest('.cartouche')) { hideXh(); return; }
+    const r = hero.getBoundingClientRect();
+    const x = e.clientX - r.left, y = e.clientY - r.top;
+    if (y > status.offsetTop) { hideXh(); return; }
+    xv.hidden = xh.hidden = dot.hidden = false;
+    xv.style.left = x + 'px'; xh.style.top = y + 'px';
+    dot.style.left = x + 'px'; dot.style.top = y + 'px';
+    const z = elev(x, y), E = Math.round(x * MPP), N = Math.round((r.height - y) * MPP);
+    ro.textContent = `E ${fmt(E)} m · N ${fmt(N)} m · ` + (z < WATER ? `Lake, surface ${WATER} m` : `Height ${Math.round(z)} m`);
+  }
+  hero.addEventListener('pointermove', onMove);
+  hero.addEventListener('pointerdown', onMove);
+  hero.addEventListener('pointerleave', () => { hideXh(); ro.textContent = idleMsg; });
+
+  /* ---------- section topography (skills and contact) ---------- */
+  const TWATER = 130;
+  const topoSheets = [['topo-skills', 31], ['topo-cv', 19]].map(([id, seed]) => {
+    const cv = $(id); if (!cv) return null;
+    const N = makeNoise(seed);
+    return { cv, key: '', elev: (x, y) => Math.max(0, 300 + N.fbm(x / 300 + 3.7, y / 300 + 8.1, 5) * 640) };
+  }).filter(Boolean);
+  function drawSheet(t) {
+    const { ctx, w, h } = prep(t.cv);
+    t.key = Math.round(w) + 'x' + Math.round(h);
+    const C = palette();
+    const g = grid(w, h, 6, t.elev);
+    ctx.fillStyle = C.map; ctx.fillRect(0, 0, w, h);
+    const wt = rgb(C.waterTint);
+    raster(ctx, g, v => v < TWATER ? [wt[0], wt[1], wt[2], Math.round(255 * clamp((TWATER - v) / 16, 0, 1))] : null);
+    ctx.strokeStyle = C.water; ctx.lineWidth = 1.1; ctx.beginPath(); iso(ctx, g, TWATER); ctx.stroke();
+    for (let lv = Math.ceil((TWATER + 1) / CI) * CI; lv <= g.max; lv += CI) {
+      const idx = lv % 100 === 0;
+      ctx.strokeStyle = rgba(C.contour, idx ? 0.8 : 0.42); ctx.lineWidth = idx ? 1.25 : 0.7;
+      ctx.beginPath(); iso(ctx, g, lv); ctx.stroke();
+    }
+  }
+  const drawTopo = () => topoSheets.forEach(drawSheet);
+  topoSheets.forEach(t => new ResizeObserver(() => {
+    const r = t.cv.getBoundingClientRect();
+    if (Math.round(r.width) + 'x' + Math.round(r.height) !== t.key) drawSheet(t);
+  }).observe(t.cv));
+
+  /* ---------- theme changes ---------- */
+  const redraw = () => { drawHero(false); drawTopo(); };
+  const mq = matchMedia('(prefers-color-scheme: dark)');
+  if (mq.addEventListener) mq.addEventListener('change', redraw);
+  new MutationObserver(redraw).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+
+  /* ---------- copy contact details ---------- */
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const el = $(btn.dataset.copy), text = el.textContent.trim();
+      const done = msg => { btn.textContent = msg; setTimeout(() => { btn.textContent = 'Copy'; }, 2200); };
+      const fallback = () => {
+        const range = document.createRange(); range.selectNodeContents(el);
+        const sel = getSelection(); sel.removeAllRanges(); sel.addRange(range);
+        done('Selected, press Ctrl+C');
+      };
+      try {
+        navigator.clipboard.writeText(text).then(() => done('Copied'), fallback);
+      } catch (err) { fallback(); }
+    });
+  });
+})();
+</script>
+
+<script>
+(() => {
+  /* ---------- fieldwork photographs: a flat strip that slowly steps along ---------- */
+  const PHOTOS = [
+    { id: 'psychrometer', tag: 'Weather', title: 'Wet- and dry-bulb readings',
+      desc: 'An aspirated psychrometer pulls air past two thermometers. The difference between their readings gives the relative humidity. Taken at the water’s edge, in the rain.',
+      alt: 'Hand holding an aspirated psychrometer with two thermometers beside a lake under low cloud' },
+    { id: 'filtration', tag: 'Water quality', title: 'Filtering samples on site',
+      desc: 'Water hauled up by rope and bucket, drawn through a membrane filter with a hand vacuum pump, then labelled by site for the lab.',
+      alt: 'Students around a toolbox with a hand vacuum pump, filter funnel, coiled rope and labelled sample tubes' },
+    { id: 'colonies', tag: 'Water quality', title: 'Counting colonies',
+      desc: 'The membrane from site 5 after incubation. Each blue colony is marked off on the grid as it is counted.',
+      alt: 'Petri dish labelled Site 5 #1 holding a gridded membrane filter with blue bacterial colonies marked in red' },
+    { id: 'augers', tag: 'Soils', title: 'Hand augers',
+      desc: 'Two augers and a soil knife laid out before coring. Augering lets you log a soil profile in minutes without digging a pit.',
+      alt: 'Two hand augers and a soil knife lying on grass' },
+    { id: 'snowpack', tag: 'Snow', title: 'Sampling the snowpack',
+      desc: 'Wet, heavy snow scattered with conifer needles, sampled beside the trekking poles.',
+      alt: 'Orange T-handled snow tool pushed into wet snow beside trekking poles and a pair of boots' },
+    { id: 'valley-snow', tag: 'Snow', title: 'Sampling the snowpack',
+      desc: 'A folding rule laid on the snow for scale, with shrubs bowed under the snowpack and cloud down on the peaks.',
+      alt: 'Snow-covered mountain valley with larch trees, bent shrubs and a folding ruler on the snow' },
+    { id: 'spindrift', tag: 'Snow', title: 'Arolla Glacier, Switzerland',
+      desc: 'Wind lifting loose snow off a high ridge on a clear day. The same process loads snow onto lee slopes.',
+      alt: 'Snow-covered mountain peak against a deep blue sky with snow blowing off the summit ridge' },
+    { id: 'setting-out', tag: 'Setting out', title: 'Setting out the groundworks',
+      desc: 'Blue lines and coloured flags mark out positions on a stripped site, with the instrument on its tripod by the dumpers.',
+      alt: 'Stripped construction site with blue marking lines, pink and yellow flags, dumpers and a survey tripod' },
+    { id: 'pegs', tag: 'Setting out', title: 'Setting out',
+      desc: 'Rows of pink-topped pegs set out across a levelled platform before the excavators start.',
+      alt: 'Large levelled red-earth platform with rows of pink pegs and two excavators under a grey sky' },
+    { id: 'prism', tag: 'Surveying', title: 'Prism on a tripod',
+      desc: 'A prism set up over a point gives the total station a fixed target to measure to.',
+      alt: 'Survey prism with a yellow and black target plate on a yellow tripod in a gravel car park' },
+    { id: 'gnss', tag: 'Surveying', title: 'Topographic survey',
+      desc: 'A Leica CS20 on the pole. Each point is coded as it is stored (FE for fence), and the readout shows 8 mm horizontal and 14 mm vertical quality.',
+      alt: 'Leica CS20 field controller on a carbon survey pole showing a map of coded survey points beside a fence' },
+    { id: 'topo-site', tag: 'Surveying', title: 'Topographic survey site',
+      desc: 'The site of a topographic survey, looking across the field to the wooded ridge.',
+      alt: 'Grassy hillside field behind a wooden post-and-rail fence and concrete track, with trees along the ridge under grey cloud' },
+    { id: 'beach', tag: 'Surveying', title: 'Beach-profile survey',
+      desc: 'An RTK GNSS rover and Leica field controller on the sand, collecting beach-profile points for coastal monitoring.',
+      alt: 'Arm in a hi-vis sleeve holding a GNSS survey pole with a Leica field controller on a wide sandy beach under blue sky and cloud' },
+    { id: 'risk-rockfall', tag: 'Coastal', title: 'Coastal risk map site',
+      desc: 'A rockfall warning and footpath diversion at Seaton, one of the hazards behind the coastal risk map.',
+      alt: 'Red Danger Frequent Rockfalls sign with a yellow footpath diversion arrow propped against an overgrown gate' },
+    { id: 'risk-path', tag: 'Coastal', title: 'Coastal risk map site',
+      desc: 'An abandoned clifftop path beside red sandstone at Seaton.',
+      alt: 'Overgrown tarmac path beside a red sandstone cliff edge, with a buddleia bush and pine trees under a clear blue sky' },
+    { id: 'risk-beach', tag: 'Coastal', title: 'Coastal risk map site',
+      desc: 'Seaton beach looking along the shingle towards the white cliffs.',
+      alt: 'Shingle beach curving towards white cliffs under a clear blue sky' },
+    { id: 'dusk-site', tag: 'Ecology', title: 'Dusk emergence survey',
+      desc: 'The survey site in evening light, before watching for bats leaving their roosts at dusk.',
+      alt: 'Overgrown concrete track through tall golden grass towards derelict buildings and an open-sided barn under a cloudy evening sky' },
+    { id: 'dusk-sunset', tag: 'Ecology', title: 'Dusk emergence survey',
+      desc: 'Sunset during a dusk emergence survey, as bats begin to leave their roosts.',
+      alt: 'Sunset over rough grassland seen from a riveted metal surface, with scrub and wooded hills on the horizon' }
+  ];
+  const N = PHOTOS.length;
+  const $ = id => document.getElementById(id);
+  const mod = i => ((i % N) + N) % N;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const small = id => `img/field-${id}-sm.webp`;
+
+  const cf = $('cf'), track = $('cf-track');
+
+  const cards = PHOTOS.map((p, i) => {
+    const el = document.createElement('div');
+    el.className = 'cf-card';
+    el.setAttribute('role', 'group');
+    el.setAttribute('aria-roledescription', 'slide');
+    el.setAttribute('aria-label', `${i + 1} of ${N}: ${p.title}`);
+    el.innerHTML = `<img src="${small(p.id)}" width="660" height="880" alt="${esc(p.alt)}" draggable="false" decoding="async"${Math.min(i, N - i) > 3 ? ' loading="lazy"' : ''}><span class="inset-label">${esc(p.title)}</span>`;
+    track.appendChild(el);
+    return el;
+  });
+
+  /* layout and gliding */
+  let W = 300, GAP = 20, pos = 0, target = 0, raf = 0, last = 0, front = -1;
+  const wrapD = d => { d = ((d % N) + N) % N; return d > N / 2 ? d - N : d; };
+  const measure = () => { W = cards[0].offsetWidth || 300; GAP = Math.max(14, Math.round(W * 0.07)); };
+
+  function render() {
+    cards.forEach((el, i) => {
+      const d = wrapD(i - pos);
+      el.style.transform = `translate3d(${(d * (W + GAP)).toFixed(2)}px,0,0)`;
+      el.style.visibility = Math.abs(d) > N / 2 - 0.6 ? 'hidden' : 'visible';
+    });
+    const f = mod(Math.round(target));
+    if (f !== front) setFront(f);
+  }
+  function tick(now) {
+    const dt = Math.min(64, now - last || 16); last = now;
+    const k = reduce ? 1 : 1 - Math.exp(-dt / 320);
+    pos += (target - pos) * k;
+    if (Math.abs(target - pos) < 0.0006) pos = target;
+    render();
+    raf = pos !== target ? requestAnimationFrame(tick) : 0;
+  }
+  function kick() { if (!raf) { last = performance.now(); raf = requestAnimationFrame(tick); } }
+  const step = n => { target = Math.round(target) + n; kick(); };
+
+  function setFront(i) { front = i; }
+
+  /* slideshow */
+  const DUR = 4800;
+  let autoOn = !reduce, inView = !('IntersectionObserver' in window), progress = 0, aRaf = 0, aLast = 0;
+  const playBtn = $('cf-play'), playIc = $('cf-play-ic');
+  function paintPlay() {
+    playBtn.setAttribute('aria-label', autoOn ? 'Pause slideshow' : 'Play slideshow');
+    playIc.setAttribute('d', autoOn ? 'M6 4h3v12H6zM11 4h3v12h-3z' : 'M6.5 3.8v12.4L16 10z');
+  }
+  const running = () => autoOn && inView && !document.hidden;
+  function aTick(now) {
+    const dt = Math.min(100, now - aLast); aLast = now;
+    if (running()) {
+      progress += dt / DUR;
+      if (progress >= 1) { progress = 0; step(1); }
+    }
+    aRaf = autoOn && inView ? requestAnimationFrame(aTick) : 0;
+  }
+  function startLoop() { if (!aRaf && autoOn && inView) { aLast = performance.now(); aRaf = requestAnimationFrame(aTick); } }
+  playBtn.addEventListener('click', () => { autoOn = !autoOn; progress = 0; paintPlay(); startLoop(); });
+  $('cf-prev').addEventListener('click', () => { progress = 0; step(-1); });
+  $('cf-next').addEventListener('click', () => { progress = 0; step(1); });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(es => { inView = es[0].isIntersecting; startLoop(); }, { threshold: 0.25 }).observe(cf);
+  }
+
+  /* start */
+  measure(); render(); paintPlay(); startLoop();
+  new ResizeObserver(() => { measure(); render(); }).observe(track);
+})();
+</script>
+
+</body></html>
